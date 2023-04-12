@@ -39,6 +39,7 @@ USUARIO VISITANTE:
 VISITANTE: 
 - ID_Usuario (PK)
 - Foto de perfil
+- Email
 - Nombre de usuario
 - Fecha de nacimiento
 - [Artistas_favoritos] (IDs Artistas guardados)
@@ -47,6 +48,7 @@ VISITANTE:
 EMPRESA 
 - ID_Empresa (PK)
 - Nombre
+- Email
 - Foto de perfil
 - Descripción
 - [Festivales_Realizados] (IDs Festivales asociados)
