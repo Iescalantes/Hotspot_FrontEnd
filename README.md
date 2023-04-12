@@ -70,6 +70,7 @@ FESTIVAL
 - Imágenes
 - Mayoría_Edad
 - Es_HOT
+- Es_Novedad
 - [Artistas_Participantes]
 
 # Stack tecnológico
