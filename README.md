@@ -69,6 +69,7 @@ FESTIVAL
 - Descripción
 - Imágenes
 - Mayoría_Edad
+- Es_HOT
 - [Artistas_Participantes]
 
 # Stack tecnológico
