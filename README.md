@@ -42,6 +42,7 @@ VISITANTE:
 - Email
 - Nombre de usuario
 - Fecha de nacimiento
+- [Usuarios_Que_Sigue] (IDs usuarios seguidos)
 - [Artistas_favoritos] (IDs Artistas guardados)
 - [Festivales_favoritos] (IDs Festivales guardados)
 
@@ -51,6 +52,8 @@ EMPRESA
 - Email
 - Foto de perfil
 - Descripción
+- Teléfono
+- Verificación_Identidad
 - [Festivales_Realizados] (IDs Festivales asociados)
 
 ARTISTA
