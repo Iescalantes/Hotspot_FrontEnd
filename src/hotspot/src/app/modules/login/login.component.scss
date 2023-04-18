@@ -1,17 +1,15 @@
 *{
     color: white;
-    font-size: large;
+    font-size: larger;
 }
 
-body{
-    height: 600px !important;
-}
+
 #tarjeta{
     background-color: #1E1E1E;
     margin: auto;
+    height: 500px;
     border-radius: 5px;
     padding-top: 5%;
-    height: 500px;
 }
 
 label{
@@ -28,10 +26,7 @@ height: 500px;
 #formulario{
     width: 80%;
     margin: auto;
-}
 
-#divpadre{
-    display: flex;
 }
 
 a{
@@ -40,9 +35,5 @@ a{
 
 input{
     color: black;
-    width: 90%;
-}
-
-#final{
-    text-align: center;
+    width: 100%;
 }
