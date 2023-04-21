@@ -7,11 +7,12 @@ import { User } from '../user.model';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
+
 export class RegistrationComponent {
   user: User = this.newUser();
 
   newUser(){
-    return new User ("","","","",new Date(), "");
+    return new User ("","","","",new Date(), "",'');
   }
 
   matchPasswords() {
@@ -27,7 +28,7 @@ async registerUser() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ password: this.user.password, nombre: this.user.nombre, email: this.user.email, fechanacimiento: this.user.fechanacimiento, followed: [] , favArts: [], favFests: [], foto: this.user.foto})
+      body: JSON.stringify({ password: this.user.password, nombre: this.user.nombre, email: this.user.email, fechanacimiento: this.user.fechanacimiento, followed: [] , favArts: [], favFests: [], foto: this.user.foto, tipo:'cliente'})
     }).then(response => {
       if (response.status === 200) {
         localStorage.setItem("loggedUser", "y");

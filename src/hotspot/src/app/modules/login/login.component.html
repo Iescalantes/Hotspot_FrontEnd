@@ -1,13 +1,13 @@
 <body>
     <div id="tarjeta" class="col-4">
-        <form id="formulario">
+        <form id="formulario" (ngSubmit) = "comprobarUser()" #registerform = "ngForm">
         <label for="email">Correo electrónico:</label>
         <br>
-        <input type="email" id="email">
+        <input type="email" id="email" name="email" [(ngModel)]="user.email">
         <br>
         <label for="pswd">Contraseña:</label>
         <br>
-        <input type="password" id="pswd">
+        <input type="password" id="pswd" name="password" [(ngModel)]="user.password">
         <br>
         <a>He olvidado la contraseña</a>
         <br>
