@@ -1,0 +1,47 @@
+*{
+    font-size: large;
+}
+
+body{
+    height: 600px !important;
+    margin-top: 5% !important;
+}
+
+h5{
+    font-size: 40px;
+}
+
+img{
+    height: 15%;
+    width: 35%;
+    margin-bottom: 25%;
+    margin-top: 25%;
+}
+
+.card{
+width: 25%;
+height: 600px;
+text-align: center;
+align-items: center !important;
+}
+
+#card1{
+    background-color: #2B2B2B;
+    border: 2px solid white;
+    color: white;
+}
+
+#card2{
+    background-color: #9747FF;
+    border: 3px solid black;
+}
+
+#card3{
+    background-color: #FFA600;
+    border: 3px solid black;
+}
+
+#divpadre{
+    display: flex;
+    margin: auto;
+}
