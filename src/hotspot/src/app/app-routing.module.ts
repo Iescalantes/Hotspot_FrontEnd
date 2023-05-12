@@ -7,6 +7,16 @@ import { LoginComponent } from './modules/login/login.component';
 import { PeticionComponent } from './modules/peticion/peticion.component';
 import { CatalogoComponent } from './modules/catalogo/catalogo.component';
 import { VistaUsuarioComponent } from './modules/vista-usuario/vista-usuario.component';
+import { VistaFestivalComponent } from './modules/vista-festival/vista-festival.component';
+import { VistaArtistaComponent } from './modules/vista-artista/vista-artista.component';
+import { MiespacioComponent } from './modules/miespacio/miespacio.component';
+import { AjustesComponent } from './modules/ajustes/ajustes.component';
+import { GestionListaPeticionesComponent } from './modules/gestion-lista-peticiones/gestion-lista-peticiones.component';
+import { GestionPeticionesComponent } from './modules/gestion-peticiones/gestion-peticiones.component';
+import { GestionArtistasComponent } from './modules/gestion-artistas/gestion-artistas.component';
+import { FestivalesPublicadosComponent } from './modules/festivales-publicados/festivales-publicados.component';
+import { Registration2Component } from './modules/registration2/registration2.component';
+import { CatalogoartistasComponent } from './modules/catalogoartistas/catalogoartistas.component';
 
 const routes: Routes = [
 
@@ -17,10 +27,20 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'register', component: RegistrationComponent },
+      { path: 'registration2', component: Registration2Component },
       { path: 'login', component: LoginComponent },
       { path: 'peticion', component: PeticionComponent },
       { path: 'catalogo', component: CatalogoComponent },
-      { path: 'vista-usuario', component: VistaUsuarioComponent }
+      { path: 'vista-usuario', component: VistaUsuarioComponent },
+      { path: 'vista-festival', component: VistaFestivalComponent },
+      { path: 'gestion-peticiones', component: GestionPeticionesComponent },
+      { path: 'vista-artista', component: VistaArtistaComponent },
+      { path: 'miespacio', component: MiespacioComponent },
+      { path: 'ajustes', component: AjustesComponent },
+      { path: 'gestion-lista-peticiones', component: GestionListaPeticionesComponent },
+      { path: 'gestion-artistas', component: GestionArtistasComponent },
+      { path: 'festivales-publicados', component: FestivalesPublicadosComponent },
+      { path: 'catalogoartistas', component: CatalogoartistasComponent }
     ]
   }
 

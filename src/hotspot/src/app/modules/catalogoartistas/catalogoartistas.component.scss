@@ -1,15 +1,16 @@
 *{
-    color: white;
     font-size: large;
 }
 
 body{
-    height: 600px !important;
     margin-top: 5% !important;
+    color: white;
 }
 
 #divpadre{
-    width: 90%;
-    margin: auto;
+    display: flex;
+}
+
+#listado{
     display: flex;
 }

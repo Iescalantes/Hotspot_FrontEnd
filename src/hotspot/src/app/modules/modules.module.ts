@@ -16,6 +16,9 @@ import { GestionArtistasComponent } from './gestion-artistas/gestion-artistas.co
 import { AltaFestivalComponent } from './alta-festival/alta-festival.component';
 import { VistaArtistaComponent } from './vista-artista/vista-artista.component';
 import { GestionListaPeticionesComponent } from './gestion-lista-peticiones/gestion-lista-peticiones.component';
+import { Registration2Component } from './registration2/registration2.component';
+import { Login2Component } from './login2/login2.component';
+import { CatalogoartistasComponent } from './catalogoartistas/catalogoartistas.component';
 
 
 
@@ -35,7 +38,10 @@ import { GestionListaPeticionesComponent } from './gestion-lista-peticiones/gest
     GestionArtistasComponent,
     AltaFestivalComponent,
     VistaArtistaComponent,
-    GestionListaPeticionesComponent
+    GestionListaPeticionesComponent,
+    Registration2Component,
+    Login2Component,
+    CatalogoartistasComponent
   ],
   imports: [
     CommonModule,
