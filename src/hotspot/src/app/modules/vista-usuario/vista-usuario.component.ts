@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './vista-usuario.component.html',
   styleUrls: ['./vista-usuario.component.scss']
 })
-export class VistaUsuarioComponent {
+export class VistaUsuarioComponent{
 
 }

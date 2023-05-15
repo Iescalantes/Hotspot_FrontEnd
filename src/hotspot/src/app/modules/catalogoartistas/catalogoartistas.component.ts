@@ -7,10 +7,13 @@ import { AfterViewInit, Component } from '@angular/core';
 })
 export class CatalogoartistasComponent implements AfterViewInit{
 
-ngAfterViewInit(): void {
+ngAfterViewInit(){
   this.chargeArtistas();
   this.chargeGeneros();
+  setTimeout(this.Guardian,100);
 }
+
+
 
 async chargeArtistas(){
 
@@ -35,6 +38,11 @@ async chargeArtistas(){
       card.style.textAlign = "center"
       contador++;
 
+      let enlace = document.createElement('a');
+      enlace.className = "enlaces";
+      enlace.href = "vista-artista"
+      enlace.setAttribute('name',element._id);
+
       let imagen = document.createElement('img');
       imagen.src = 'assets/images/martin-garrix.jpg'
       imagen.style.borderRadius = "50%";
@@ -46,8 +54,9 @@ async chargeArtistas(){
       p.style.textAlign = "center";
       p.style.font = "large";
       
-      card.appendChild(imagen);
-      card.appendChild(p);
+      enlace.appendChild(imagen);
+      enlace.appendChild(p);
+      card.appendChild(enlace);
       listado?.appendChild(card);
       
     }
@@ -61,6 +70,20 @@ async chargeArtistas(){
 };
 
 async chargeGeneros(){};
+
+
+async Guardian() {
+  let enlaces = document.getElementsByClassName('enlaces');
+
+    for (let i = 0; i < enlaces.length; i++) {
+      let element = enlaces[i]
+
+      element?.addEventListener('click', function(evt){
+        let nombre = (evt.currentTarget as HTMLElement).getAttribute("name") || "No se ha podido cargar";
+        localStorage.setItem('IDArtista', nombre);
+      })
+    }
+};
 
 
 }

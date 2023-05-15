@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './festivales-publicados.component.html',
   styleUrls: ['./festivales-publicados.component.scss']
 })
-export class FestivalesPublicadosComponent {
+export class FestivalesPublicadosComponent{
 
 }
