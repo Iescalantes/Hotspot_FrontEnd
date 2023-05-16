@@ -14,7 +14,7 @@ export class CatalogoComponent implements AfterViewInit {
     this.TodosLosFestis();
     this.FestisNovedad();
     this.FestisPopus();
-    setTimeout(this.Guardian,1000);
+    setTimeout(this.Guardian,200);
   }
 
   // Función para mostrar los 3 festivales más populares

@@ -29,7 +29,15 @@ body{
     margin-left: 10%;
 }
 
-.artistas{
+#nombreymg{
+    display: flex;
+}
+
+#estado_megusta{
+    margin-left: 5%;
+}
+
+.img,.artistas{
     width: 15%;
     height: 15%;
 }
