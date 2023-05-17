@@ -147,12 +147,35 @@ async Megustas_Status(id_festival: String){
         estado.addEventListener("click",function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart";
           // Aquí va el put o update pa actualizar el bicho
+          let festis = data[0].favFests;
+          festis.push(localStorage.getItem('IDFestival'));
+
+          let URL = 'localhost:4200/users/' + data[0]._id;
+          const response = fetch(URL , {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ password: data[0].password,nombre: data[0].nombre, email: data[0].email, fechanacimiento: data[0].fechanacimiento, followed: data[0].followed, favArts: data[0].favArts, favFests: festis, foto: data[0].foto, tipo: data[0].tipo})
+          }).then(response => {
+            if (response.status === 200) {
+              response.json().then(user => {
+                
+              });
+            } else {
+              console.log('Error añadiendo el festival')
+            }
+          }).catch(error => {
+            console.error("Error adding a fest:", error);
+          });
+
         })
       } else if(!guardado && estado){
         estado.className = "bi bi-heart";
         estado.addEventListener("click",function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
           // Aquí va el put o update pa actualizar el bicho
+          console.log(data[0].favFests);
         })
       }
      
