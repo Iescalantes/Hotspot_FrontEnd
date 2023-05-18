@@ -6,7 +6,6 @@ import { RegistrationComponent } from './modules/registration/registration.compo
 import { LoginComponent } from './modules/login/login.component';
 import { PeticionComponent } from './modules/peticion/peticion.component';
 import { CatalogoComponent } from './modules/catalogo/catalogo.component';
-import { VistaUsuarioComponent } from './modules/vista-usuario/vista-usuario.component';
 import { VistaFestivalComponent } from './modules/vista-festival/vista-festival.component';
 import { VistaArtistaComponent } from './modules/vista-artista/vista-artista.component';
 import { MiespacioComponent } from './modules/miespacio/miespacio.component';
@@ -17,6 +16,7 @@ import { GestionArtistasComponent } from './modules/gestion-artistas/gestion-art
 import { FestivalesPublicadosComponent } from './modules/festivales-publicados/festivales-publicados.component';
 import { Registration2Component } from './modules/registration2/registration2.component';
 import { CatalogoartistasComponent } from './modules/catalogoartistas/catalogoartistas.component';
+import { EditingInfoComponent } from './modules/editing-info/editing-info.component';
 
 const routes: Routes = [
 
@@ -31,7 +31,6 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'peticion', component: PeticionComponent },
       { path: 'catalogo', component: CatalogoComponent },
-      { path: 'vista-usuario', component: VistaUsuarioComponent },
       { path: 'vista-festival', component: VistaFestivalComponent },
       { path: 'gestion-peticiones', component: GestionPeticionesComponent },
       { path: 'vista-artista', component: VistaArtistaComponent },
@@ -39,8 +38,9 @@ const routes: Routes = [
       { path: 'ajustes', component: AjustesComponent },
       { path: 'gestion-lista-peticiones', component: GestionListaPeticionesComponent },
       { path: 'gestion-artistas', component: GestionArtistasComponent },
-      { path: 'festivales-publicados', component: FestivalesPublicadosComponent },
-      { path: 'catalogoartistas', component: CatalogoartistasComponent }
+      { path: 'festivales-publicados', component: FestivalesPublicadosComponent }, 
+      { path: 'catalogoartistas', component: CatalogoartistasComponent },
+      { path: 'editing-info', component: EditingInfoComponent }
     ]
   }
 

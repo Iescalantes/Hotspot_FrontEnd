@@ -121,7 +121,7 @@ async Megustas_Status(id_festival: String){
   let estado = document.getElementById('estado_megusta');
   let guardado = false;
   let email_usuario = localStorage.getItem('email');
-    
+  let posicion = 0;
     
     const URL = "http://localhost:5000/users/email/"+email_usuario;
 
@@ -132,26 +132,27 @@ async Megustas_Status(id_festival: String){
       }
       return "error"
     }).then(data => {
-      console.log(data[0]);
-      for (let i = 0; i < data[0].favFests.length; i++) {
-        const element = data.favFests[i];
 
+      if (data[0].favFests.length>0){
+      for (let i = 0; i < data[0].favFests.length; i++) {
+        const element = data[0].favFests[i];
         if(element == id_festival && estado){
           guardado = true;
+          posicion = i;
         }
-        
       }
+    }
 
-      if (guardado && estado){
-        estado.className = "bi bi-heart-fill";
-        estado.addEventListener("click",function(evt){
-          (evt.currentTarget as HTMLElement).className = "bi bi-heart";
+      if (!guardado && estado){
+        estado.className = "bi bi-heart";
+        estado.addEventListener("click",async function(evt){
+          (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
           // Aquí va el put o update pa actualizar el bicho
           let festis = data[0].favFests;
           festis.push(localStorage.getItem('IDFestival'));
 
-          let URL = 'localhost:4200/users/' + data[0]._id;
-          const response = fetch(URL , {
+          let URL = 'http://localhost:5000/users/' + data[0]._id;
+          const response = await fetch(URL , {
             method: "PUT",
             headers: {
               "Content-Type": "application/json"
@@ -159,9 +160,7 @@ async Megustas_Status(id_festival: String){
             body: JSON.stringify({ password: data[0].password,nombre: data[0].nombre, email: data[0].email, fechanacimiento: data[0].fechanacimiento, followed: data[0].followed, favArts: data[0].favArts, favFests: festis, foto: data[0].foto, tipo: data[0].tipo})
           }).then(response => {
             if (response.status === 200) {
-              response.json().then(user => {
-                
-              });
+              window.location.reload();
             } else {
               console.log('Error añadiendo el festival')
             }
@@ -170,12 +169,30 @@ async Megustas_Status(id_festival: String){
           });
 
         })
-      } else if(!guardado && estado){
-        estado.className = "bi bi-heart";
-        estado.addEventListener("click",function(evt){
-          (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
+      } else if(guardado && estado){
+        estado.className = "bi bi-heart-fill";
+        estado.addEventListener("click",async function(evt){
+          (evt.currentTarget as HTMLElement).className = "bi bi-heart";
           // Aquí va el put o update pa actualizar el bicho
-          console.log(data[0].favFests);
+          let festis = data[0].favFests;
+          festis.splice(posicion,1);
+
+          let URL = 'http://localhost:5000/users/' + data[0]._id;
+          const response = await fetch(URL , {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ password: data[0].password,nombre: data[0].nombre, email: data[0].email, fechanacimiento: data[0].fechanacimiento, followed: data[0].followed, favArts: data[0].favArts, favFests: festis, foto: data[0].foto, tipo: data[0].tipo})
+          }).then(response => {
+            if (response.status === 200) {
+              window.location.reload();
+            } else {
+              console.log('Error eliminando el festival')
+            }
+          }).catch(error => {
+            console.error("Error deleting a fest:", error);
+          });
         })
       }
      
@@ -183,10 +200,6 @@ async Megustas_Status(id_festival: String){
       .catch(error => {
         console.error("Error getting fest data:", error);
       });
-
-}
-
-async change_status(evt: { currentTarget: any; }){
 
 }
 

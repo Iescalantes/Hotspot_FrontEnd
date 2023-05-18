@@ -29,13 +29,13 @@ export class LoginComponent {
         if (response.status === 200) {
           localStorage.setItem("loggedUser", "y");
           response.json().then(user => {
-            localStorage.setItem("username", user.nombre);
           localStorage.setItem("tipo", user.tipo);
           localStorage.setItem("email", user.email);
+          localStorage.setItem('soyempresa','n');
           });
           window.location.href = "";
         } else {
-          console.log("hola")
+          console.log("Error")
         }
       }).catch(error => {
         console.error("Error buscando el usuario:", error);

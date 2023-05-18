@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VistaUsuarioComponent } from './vista-usuario.component';
+import { EditingInfoComponent } from './editing-info.component';
 
-describe('VistaUsuarioComponent', () => {
-  let component: VistaUsuarioComponent;
-  let fixture: ComponentFixture<VistaUsuarioComponent>;
+describe('EditingInfoComponent', () => {
+  let component: EditingInfoComponent;
+  let fixture: ComponentFixture<EditingInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VistaUsuarioComponent ]
+      declarations: [ EditingInfoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VistaUsuarioComponent);
+    fixture = TestBed.createComponent(EditingInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

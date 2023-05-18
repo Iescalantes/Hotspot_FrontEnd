@@ -10,13 +10,21 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModulesModule } from './modules/modules.module';
+import { NavigationLoggedComponent } from './layout/navigation-logged/navigation-logged.component';
+import { NavigationAdminComponent } from './layout/navigation-admin/navigation-admin.component';
+import { NavigationBusinessComponent } from './layout/navigation-business/navigation-business.component';
+import { DynamicComponentDirective } from './directives/dynamic-component.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SkeletonComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    NavigationLoggedComponent,
+    NavigationAdminComponent,
+    NavigationBusinessComponent,
+    DynamicComponentDirective
   ],
   imports: [
     BrowserModule,
