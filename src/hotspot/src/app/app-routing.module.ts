@@ -17,6 +17,7 @@ import { FestivalesPublicadosComponent } from './modules/festivales-publicados/f
 import { Registration2Component } from './modules/registration2/registration2.component';
 import { CatalogoartistasComponent } from './modules/catalogoartistas/catalogoartistas.component';
 import { EditingInfoComponent } from './modules/editing-info/editing-info.component';
+import { Login2Component } from './modules/login2/login2.component';
 
 const routes: Routes = [
 
@@ -40,7 +41,8 @@ const routes: Routes = [
       { path: 'gestion-artistas', component: GestionArtistasComponent },
       { path: 'festivales-publicados', component: FestivalesPublicadosComponent }, 
       { path: 'catalogoartistas', component: CatalogoartistasComponent },
-      { path: 'editing-info', component: EditingInfoComponent }
+      { path: 'editing-info', component: EditingInfoComponent },
+      { path: 'login2', component: Login2Component }
     ]
   }
 
