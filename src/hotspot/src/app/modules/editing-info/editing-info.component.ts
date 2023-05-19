@@ -19,6 +19,68 @@ export class EditingInfoComponent implements AfterViewInit {
     })
     if (localStorage.getItem('soyempresa') == 'y') {
 
+
+      let tlf = document.getElementById('Tlf');
+      let desc = document.getElementById('Desc');
+      let boton = document.getElementById('confirm');
+      let name = document.getElementById('Name');
+      let email = document.getElementById('Email');
+
+      if (tlf && desc && boton && name && email) {
+
+        boton.addEventListener('click', function () {
+
+          const URL = "http://localhost:5000/empresa/email/" + localStorage.getItem('email');
+          const response = fetch(URL
+          ).then(response => {
+            if (response.status === 200) {
+              return response.json();
+            }
+            return "error"
+          }).then(data => {
+
+            const URL = "http://localhost:5000/empresa/" + data[0]._id;
+
+            let name = document.getElementById('Name');
+            let email = document.getElementById('Email');
+            let tlf = document.getElementById('Tlf');
+            let desc = document.getElementById('Desc');
+
+
+
+            if (!(name as HTMLInputElement).value || !(email as HTMLInputElement).value || !(tlf as HTMLInputElement).value || !(desc as HTMLInputElement).value) {
+              alert('Debe rellenar todos los campos');
+              (name as HTMLInputElement).value = data[0].nombre;
+              (email as HTMLInputElement).value = data[0].email;
+              (tlf as HTMLInputElement).value = data[0].telefono;
+              (desc as HTMLInputElement).value = data[0].descripcion;
+              
+            } else {
+
+              const response = fetch(URL, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ password: data[0].password, nombre: (name as HTMLInputElement).value, email: (email as HTMLInputElement).value, telefono: (tlf as HTMLInputElement).value, verificacion: data[0].verificacion, descripcion: (desc as HTMLInputElement).value, festivales: data[0].festivales })
+              }).then(response => {
+                window.location.href = 'ajustes';
+              }).catch(error => {
+                console.error("Error updating the business:", error);
+              });
+            }
+
+          })
+            .catch(error => {
+              console.error("Error getting business data:", error);
+            });
+
+        });
+      }
+
+
+
+
     } else {
       let form = document.getElementById('form');
       let tlf = document.getElementById('Tlf');
