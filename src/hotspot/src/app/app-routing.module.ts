@@ -18,6 +18,7 @@ import { Registration2Component } from './modules/registration2/registration2.co
 import { CatalogoartistasComponent } from './modules/catalogoartistas/catalogoartistas.component';
 import { EditingInfoComponent } from './modules/editing-info/editing-info.component';
 import { Login2Component } from './modules/login2/login2.component';
+import { FormPeticionComponent } from './modules/form-peticion/form-peticion.component';
 
 const routes: Routes = [
 
@@ -42,7 +43,8 @@ const routes: Routes = [
       { path: 'festivales-publicados', component: FestivalesPublicadosComponent }, 
       { path: 'catalogoartistas', component: CatalogoartistasComponent },
       { path: 'editing-info', component: EditingInfoComponent },
-      { path: 'login2', component: Login2Component }
+      { path: 'login2', component: Login2Component },
+      { path: 'form-peticion', component: FormPeticionComponent }
     ]
   }
 

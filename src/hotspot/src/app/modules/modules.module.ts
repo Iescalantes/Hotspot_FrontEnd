@@ -19,6 +19,7 @@ import { Registration2Component } from './registration2/registration2.component'
 import { Login2Component } from './login2/login2.component';
 import { CatalogoartistasComponent } from './catalogoartistas/catalogoartistas.component';
 import { EditingInfoComponent } from './editing-info/editing-info.component';
+import { FormPeticionComponent } from './form-peticion/form-peticion.component';
 
 
 
@@ -41,7 +42,8 @@ import { EditingInfoComponent } from './editing-info/editing-info.component';
     Registration2Component,
     Login2Component,
     CatalogoartistasComponent,
-    EditingInfoComponent
+    EditingInfoComponent,
+    FormPeticionComponent
   ],
   imports: [
     CommonModule,
