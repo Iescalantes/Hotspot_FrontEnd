@@ -5,7 +5,7 @@
 
 export class Festival {
     constructor (
-        public empresa: string,
+        public Id_empresa: string,
         public nombre: string,
         public fecha: Date,
         public localizacion: string,

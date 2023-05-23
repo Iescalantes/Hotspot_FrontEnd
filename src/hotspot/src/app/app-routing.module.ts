@@ -19,6 +19,7 @@ import { CatalogoartistasComponent } from './modules/catalogoartistas/catalogoar
 import { EditingInfoComponent } from './modules/editing-info/editing-info.component';
 import { Login2Component } from './modules/login2/login2.component';
 import { FormPeticionComponent } from './modules/form-peticion/form-peticion.component';
+import { AddArtsComponent } from './modules/add-arts/add-arts.component';
 
 const routes: Routes = [
 
@@ -44,7 +45,8 @@ const routes: Routes = [
       { path: 'catalogoartistas', component: CatalogoartistasComponent },
       { path: 'editing-info', component: EditingInfoComponent },
       { path: 'login2', component: Login2Component },
-      { path: 'form-peticion', component: FormPeticionComponent }
+      { path: 'form-peticion', component: FormPeticionComponent },
+      { path: 'addArts', component: AddArtsComponent },
     ]
   }
 
