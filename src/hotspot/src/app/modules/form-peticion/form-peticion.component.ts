@@ -43,10 +43,7 @@ export class FormPeticionComponent {
         body: JSON.stringify({ Id_empresa: id_empresa, nombre: this.festival.nombre, fecha: this.festival.fecha, localizacion: this.festival.localizacion, descripcion: this.festival.descripcion, mayoriaedad: this.festival.mayoriaedad, eshot: bonus1, esnovedad: bonus2, artistas: [], confirmado: false, megustas: 0, foto: this.festival.foto })
       }).then(async response => {
         if (response.status === 200) {
-
           this.guardarID();
-          localStorage.setItem('clase', '');
-          //window.location.href = 'addArts'
         } else {
           alert('Algo ha salido mal')
           console.log('error')
@@ -63,8 +60,6 @@ export class FormPeticionComponent {
 
   }
 
-
-
   async guardarID() {
     const URL = "http://localhost:5000/festivales";
 
@@ -75,8 +70,9 @@ export class FormPeticionComponent {
     }
     return "error"
   }).then(data => {
-    console.log(data);
     localStorage.setItem('prev',data[data.length-1]._id);
+    localStorage.setItem('clase', '');
+    window.location.href = 'addArts'
   })
   .catch(error => {
     console.error("Error getting fest data:", error);

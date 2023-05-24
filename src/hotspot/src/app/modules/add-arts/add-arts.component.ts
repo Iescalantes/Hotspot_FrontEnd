@@ -1,4 +1,4 @@
-import { AfterViewInit,Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Artista } from '../artist.model ';
 
 @Component({
@@ -6,68 +6,22 @@ import { Artista } from '../artist.model ';
   templateUrl: './add-arts.component.html',
   styleUrls: ['./add-arts.component.scss']
 })
-export class AddArtsComponent implements AfterViewInit{
-  
+export class AddArtsComponent implements AfterViewInit {
+
   ngAfterViewInit(): void {
-  document.getElementById('finish')?.addEventListener('click',this.finish);
+    document.getElementById('finish')?.addEventListener('click', this.updateBusiness);
   }
 
   artista: Artista = this.newArtista();
 
-  newArtista(){
-    return new Artista ('','','',[],'',[],[]);
+  newArtista() {
+    return new Artista('', '', '', [], '', [], []);
   }
 
-  artistas_prov: Array<any> = [];
 
-  async registerArtista() {
-
-    let nombre = this.artista.apodo;
-
-    const URL = "http://localhost:5000/artistas/name/" + nombre;
-  
-    const response = await fetch(URL
-    ).then(response => {
-      if (response.status === 200) {
-        alert('Ese artista ya se encuentra en nuestra base de datos');
-      }else{
-        
-        let generos = document.getElementById('gen')?.innerHTML.split(' ');
-        let tags = document.getElementById('tags')?.innerHTML.split(' ');
-        let array = [];
-        array.push(localStorage.getItem('prev'))
-          
-            const URL = "http://localhost:5000/artistas";
-            const response = fetch(URL, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({ foto: this.artista.foto, nombre: this.artista.nombre, apodo: this.artista.apodo, generos: generos, descripcion: this.artista.descripcion, tags: tags, festivales: array}) 
-            }).then(response => {
-
-              if (response.status === 200) {
-                return response.json();
-              }
-              return "error"
-
-            })
-            .catch(error => {
-              console.error("Error creando el artista:", error);
-            });
-
-
-      }
-      return "error"
-    }).catch(error => {
-      console.error("Error getting artist data:", error);
-    });
-  
-    }
-
-    guardarID() {
-      const URL = "http://localhost:5000/artistas";
-  
+  // AÑADIR festival a la empresa
+  updateBusiness() {
+    const URL = "http://localhost:5000/empresas/email/" + localStorage.getItem('email');
     const response = fetch(URL
     ).then(response => {
       if (response.status === 200) {
@@ -75,51 +29,124 @@ export class AddArtsComponent implements AfterViewInit{
       }
       return "error"
     }).then(data => {
-      localStorage.setItem('prevArt',data[data.length-1]._id);
-    })
-    .catch(error => {
-      console.error("Error getting fest data:", error);
-    });
-    };
 
+      let array = data[0].festivales;
+      array.push(localStorage.getItem('prev'));
 
-
-    finish(){
-
-      const URL = "http://localhost:5000/festivales/"+localStorage.getItem('prev');
-
-      const response = fetch(URL
-        ).then(response => {
-          if (response.status === 200) {
-            console.log('Tus muertos')
-            return response.json();
-          }
-          return "error"
-        }).then(data => { 
-          console.log(data);
-        })
-        .catch(error => {
-          console.error("Error getting business data:", error);
-        });
-    
-
-      /*
-      const URL = "http://localhost:5000/festivales/"+localStorage.getItem('prev');
-
-      const response = fetch(URL, {
+      const URL2 = "http://localhost:5000/empresas/" + data[0]._id;
+      const response2 = fetch(URL2, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ Id_empresa: data[0].Id_empresa, nombre: this.festival.nombre, fecha: this.festival.fecha, localizacion: this.festival.localizacion, descripcion: this.festival.descripcion, mayoriaedad: this.festival.mayoriaedad, eshot: bonus1, esnovedad: bonus2, artistas: [], confirmado: false, megustas:0, foto: this.festival.foto })
+        body: JSON.stringify({ festivales: array })
       }).then(response => {
         window.location.href = 'festivales-publicados';
       }).catch(error => {
         console.error("Error updating the business:", error);
       });
-*/
-    
-}
-    
+
+    })
+      .catch(error => {
+        console.error("Error getting business data:", error);
+      });
+  };
+
+  // REGISTRA ARTISTA Y LE DEFINE TAMBIEN EL FESTIVAL
+
+  async registerArtista() {
+
+    let nombre = this.artista.apodo;
+
+    const URL = "http://localhost:5000/artistas/nombre/" + nombre;
+
+    const response = await fetch(URL
+    ).then(response => {
+      if (response.status === 200) {
+        alert('Ese artista ya se encuentra en nuestra base de datos');
+      } else {
+
+        let generos = document.getElementById('gen')?.innerHTML.split(' ');
+        let tags = document.getElementById('tags')?.innerHTML.split(' ');
+        let array = [];
+        array.push(localStorage.getItem('prev'))
+
+        const URL = "http://localhost:5000/artistas";
+        const response = fetch(URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ foto: this.artista.foto, nombre: this.artista.nombre, apodo: this.artista.apodo, generos: generos, descripcion: this.artista.descripcion, tags: tags, festivales: array })
+        }).then(response => {
+
+          if (response.status === 200) {
+            this.guardarID();
+          }
+          return "error"
+
+        })
+          .catch(error => {
+            console.error("Error creando el artista:", error);
+          });
+
+
+      }
+      return "error"
+    }).catch(error => {
+      console.error("Error getting artist data:", error);
+    });
+
+  }
+
+// GUARDA IDs de ARTISTAS en el FESTIVAL
+
+  guardarID() {
+    const URL = "http://localhost:5000/artistas";
+
+    const response = fetch(URL
+    ).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return "error"
+    }).then(arts => {
+      const URL2 = "http://localhost:5000/festivales/" + localStorage.getItem('prev');
+      const response2 = fetch(URL2
+      ).then(response => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        return "error"
+      }).then(data => {
+
+        let array = data.artistas; // Esto tiene que contener los artistas del festival
+        array.push(arts[arts.length - 1]._id); 
+
+        const URL3 = "http://localhost:5000/festivales/" + localStorage.getItem('prev');
+        const response3 = fetch(URL3, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ artistas: array })
+        }).then(response => {
+
+        }).catch(error => {
+          console.error("Error updating the business:", error);
+        });
+
+
+      })
+        .catch(error => {
+          console.error("Error getting fest data:", error);
+        });
+
+    })
+      .catch(error => {
+        console.error("Error getting fest data:", error);
+      });
+  };
+
 
 }
