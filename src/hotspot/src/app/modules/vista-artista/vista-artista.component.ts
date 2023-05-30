@@ -14,7 +14,12 @@ export class VistaArtistaComponent implements AfterViewInit {
 
   async chargeInfo() {
     let id_artista = localStorage.getItem('IDArtista');
-
+    let papelera = document.getElementById('maspalla');
+    if (localStorage.getItem('tipo')!='admin' && papelera){
+      papelera.innerHTML = '';
+    } else{
+      papelera?.addEventListener('click',this.deleteArt);
+    };
 
     const URL = "http://localhost:5000/artistas/" + id_artista;
 
@@ -206,5 +211,19 @@ export class VistaArtistaComponent implements AfterViewInit {
 
     }
   }
+
+
+
+async deleteArt(){
+  const URL = "http://localhost:5000/artistas/" + localStorage.getItem('IDArtista');
+
+  const response = fetch(URL, {
+    method: "DELETE"
+  }).then(response => {
+    window.location.href = 'gestion-artistas';
+  }).catch(error => {
+    console.error("Error deleting the artist:", error);
+  });
+};
 
 }
