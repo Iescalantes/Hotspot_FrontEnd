@@ -13,7 +13,7 @@ export class AjustesComponent implements AfterViewInit {
   }
 
   async deleterUser() {
-    const URL = "http://localhost:5000/users/email/" + localStorage.getItem('email');
+    const URL = "https://hotspotbackend-production.up.railway.app/users/email/" + localStorage.getItem('email');
 
     const response = await fetch(URL
     ).then(response => {
@@ -22,7 +22,7 @@ export class AjustesComponent implements AfterViewInit {
       }
       return "error"
     }).then(data => {
-      const URL2 = "http://localhost:5000/users/" + data[0]._id;
+      const URL2 = "https://hotspotbackend-production.up.railway.app/users/" + data[0]._id;
 
     const response = fetch(URL2, {
       method: "DELETE"
@@ -44,7 +44,7 @@ export class AjustesComponent implements AfterViewInit {
 
 
   async deleterBusiness() {
-    const URL = "http://localhost:5000/empresas/email/" + localStorage.getItem('email');
+    const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + localStorage.getItem('email');
 
     const response = await fetch(URL
     ).then(response => {
@@ -53,7 +53,7 @@ export class AjustesComponent implements AfterViewInit {
       }
       return "error"
     }).then(data => {
-      const URL2 = "http://localhost:5000/empresas/" + data[0]._id;
+      const URL2 = "https://hotspotbackend-production.up.railway.app/empresas/" + data[0]._id;
 
     const response = fetch(URL2, {
       method: "DELETE"
@@ -77,7 +77,7 @@ export class AjustesComponent implements AfterViewInit {
     let email = localStorage.getItem('email');
 
     if (localStorage.getItem('soyempresa')=='y') {
-      const URL = "http://localhost:5000/empresas/email/" + email;
+      const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + email;
 
       const response = await fetch(URL
       ).then(response => {
@@ -106,7 +106,7 @@ export class AjustesComponent implements AfterViewInit {
         });
         document.getElementById('deleter')?.addEventListener('click', this.deleterBusiness);
       } else {
-      const URL = "http://localhost:5000/users/email/" + email;
+      const URL = "https://hotspotbackend-production.up.railway.app/users/email/" + email;
 
       const response = await fetch(URL
         ).then(response => {
@@ -132,14 +132,6 @@ export class AjustesComponent implements AfterViewInit {
     }
   };
 
-
-
-
-
-
-
-
-
   async RolCheck(){
     let logged = localStorage.getItem('loggedUser');
     let rol = localStorage.getItem('tipo');
@@ -163,7 +155,7 @@ export class AjustesComponent implements AfterViewInit {
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

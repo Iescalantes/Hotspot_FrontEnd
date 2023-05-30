@@ -21,7 +21,7 @@ export class VistaArtistaComponent implements AfterViewInit {
       papelera?.addEventListener('click',this.deleteArt);
     };
 
-    const URL = "http://localhost:5000/artistas/" + id_artista;
+    const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + id_artista;
 
     const response = await fetch(URL
     ).then(response => {
@@ -66,7 +66,7 @@ export class VistaArtistaComponent implements AfterViewInit {
 
             if (i < festis.length) {
 
-              const URL = "http://localhost:5000/festivales/" + festis[i];
+              const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
 
               const response = fetch(URL
               ).then(response => {
@@ -131,7 +131,7 @@ export class VistaArtistaComponent implements AfterViewInit {
       let email_usuario = localStorage.getItem('email');
       let posicion = 0;
 
-      const URL = "http://localhost:5000/users/email/" + email_usuario;
+      const URL = "https://hotspotbackend-production.up.railway.app/users/email/" + email_usuario;
 
       const response = await fetch(URL
       ).then(response => {
@@ -159,7 +159,7 @@ export class VistaArtistaComponent implements AfterViewInit {
             let artists = data[0].favArts;
             artists.push(localStorage.getItem('IDArtista'));
 
-            let URL = 'http://localhost:5000/users/' + data[0]._id;
+            let URL = 'https://hotspotbackend-production.up.railway.app/users/' + data[0]._id;
             const response = await fetch(URL, {
               method: "PUT",
               headers: {
@@ -185,7 +185,7 @@ export class VistaArtistaComponent implements AfterViewInit {
             let artists = data[0].favArts;
             artists.splice(posicion, 1);
 
-            let URL = 'http://localhost:5000/users/' + data[0]._id;
+            let URL = 'https://hotspotbackend-production.up.railway.app/users/' + data[0]._id;
             const response = await fetch(URL, {
               method: "PUT",
               headers: {
@@ -215,7 +215,7 @@ export class VistaArtistaComponent implements AfterViewInit {
 
 
 async deleteArt(){
-  const URL = "http://localhost:5000/artistas/" + localStorage.getItem('IDArtista');
+  const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + localStorage.getItem('IDArtista');
 
   const response = fetch(URL, {
     method: "DELETE"

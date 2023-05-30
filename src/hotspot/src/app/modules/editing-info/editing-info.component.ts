@@ -32,7 +32,7 @@ export class EditingInfoComponent implements AfterViewInit {
 
         boton.addEventListener('click', function () {
 
-          const URL = "http://localhost:5000/empresa/email/" + localStorage.getItem('email');
+          const URL = "https://hotspotbackend-production.up.railway.app/empresa/email/" + localStorage.getItem('email');
           const response = fetch(URL
           ).then(response => {
             if (response.status === 200) {
@@ -41,7 +41,7 @@ export class EditingInfoComponent implements AfterViewInit {
             return "error"
           }).then(data => {
 
-            const URL = "http://localhost:5000/empresa/" + data[0]._id;
+            const URL = "https://hotspotbackend-production.up.railway.app/empresa/" + data[0]._id;
 
             let name = document.getElementById('Name');
             let email = document.getElementById('Email');
@@ -102,7 +102,7 @@ export class EditingInfoComponent implements AfterViewInit {
           let name = document.getElementById('Name');
           let email = document.getElementById('Email');
 
-          const URL = "http://localhost:5000/users/email/" + localStorage.getItem('email');
+          const URL = "https://hotspotbackend-production.up.railway.app/users/email/" + localStorage.getItem('email');
           const response = fetch(URL
           ).then(response => {
             if (response.status === 200) {
@@ -111,7 +111,7 @@ export class EditingInfoComponent implements AfterViewInit {
             return "error"
           }).then(data => {
 
-            const URL = "http://localhost:5000/users/" + data[0]._id;
+            const URL = "https://hotspotbackend-production.up.railway.app/users/" + data[0]._id;
 
             let name = document.getElementById('Name');
             let email = document.getElementById('Email');
@@ -172,7 +172,7 @@ export class EditingInfoComponent implements AfterViewInit {
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

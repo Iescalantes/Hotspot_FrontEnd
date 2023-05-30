@@ -14,7 +14,7 @@ export class VistaFestivalComponent implements AfterViewInit {
 
   async chargeInfo() {
     let id_festival = localStorage.getItem('IDFestival');
-    const URL = "http://localhost:5000/festivales/" + id_festival;
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + id_festival;
 
     const response = await fetch(URL
     ).then(response => {
@@ -59,7 +59,7 @@ export class VistaFestivalComponent implements AfterViewInit {
             
             if (i < artistas.length) {
 
-              const URL = "http://localhost:5000/artistas/" + artistas[i];
+              const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
 
               const response = fetch(URL
               ).then(response => {
@@ -123,7 +123,7 @@ async Megustas_Status(id_festival: String){
   let email_usuario = localStorage.getItem('email');
   let posicion = 0;
     
-    const URL = "http://localhost:5000/users/email/"+email_usuario;
+    const URL = "https://hotspotbackend-production.up.railway.app/users/email/"+email_usuario;
 
     const response = await fetch(URL
     ).then(response => {
@@ -151,7 +151,7 @@ async Megustas_Status(id_festival: String){
           let festis = data[0].favFests;
           festis.push(localStorage.getItem('IDFestival'));
 
-          let URL = 'http://localhost:5000/users/' + data[0]._id;
+          let URL = 'https://hotspotbackend-production.up.railway.app/users/' + data[0]._id;
           const response = await fetch(URL , {
             method: "PUT",
             headers: {
@@ -177,7 +177,7 @@ async Megustas_Status(id_festival: String){
           let festis = data[0].favFests;
           festis.splice(posicion,1);
 
-          let URL = 'http://localhost:5000/users/' + data[0]._id;
+          let URL = 'https://hotspotbackend-production.up.railway.app/users/' + data[0]._id;
           const response = await fetch(URL , {
             method: "PUT",
             headers: {

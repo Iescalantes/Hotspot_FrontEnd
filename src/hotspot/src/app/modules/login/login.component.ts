@@ -18,7 +18,7 @@ export class LoginComponent {
     let emailAComprobar = this.user.email;
 
     if (emailAComprobar != "") {
-      const URL = "http://localhost:5000/users/login";
+      const URL = "https://hotspotbackend-production.up.railway.app/users/login";
       const response = await fetch(URL, {
         method: "POST",
         headers: {

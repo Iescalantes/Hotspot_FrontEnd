@@ -22,7 +22,7 @@ export class RegistrationComponent {
 
 async registerUser() {
   if (this.matchPasswords()) {
-    const URL = "http://localhost:5000/users";
+    const URL = "https://hotspotbackend-production.up.railway.app/users";
     const response = await fetch(URL, {
       method: "POST",
       headers: {

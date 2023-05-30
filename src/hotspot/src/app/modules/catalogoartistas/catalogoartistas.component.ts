@@ -17,7 +17,7 @@ ngAfterViewInit(){
 
 async chargeArtistas(){
 
-  const URL = "http://localhost:5000/artistas";
+  const URL = "https://hotspotbackend-production.up.railway.app/artistas";
   
   const response = await fetch(URL
   ).then(response => {

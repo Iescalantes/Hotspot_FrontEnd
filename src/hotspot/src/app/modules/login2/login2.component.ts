@@ -18,7 +18,7 @@ export class Login2Component {
     let emailAComprobar = this.empresa.email;
 
     if (emailAComprobar != "") {
-      const URL = "http://localhost:5000/empresas/login";
+      const URL = "https://hotspotbackend-production.up.railway.app/empresas/login";
       const response = await fetch(URL, {
         method: "POST",
         headers: {

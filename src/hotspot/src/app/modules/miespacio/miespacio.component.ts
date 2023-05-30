@@ -21,7 +21,7 @@ export class MiespacioComponent implements AfterViewInit {
 
 
 
-    const URL = "http://localhost:5000/users/email/"+localStorage.getItem('email');
+    const URL = "https://hotspotbackend-production.up.railway.app/users/email/"+localStorage.getItem('email');
 
 
     const response = fetch(URL
@@ -37,7 +37,7 @@ export class MiespacioComponent implements AfterViewInit {
       for (let i = 0; i < user.length; i++) {
         
         const id = user[i];
-        const URL2 = "http://localhost:5000/festivales/"+id;
+        const URL2 = "https://hotspotbackend-production.up.railway.app/festivales/"+id;
 
 
         const response = fetch(URL2
@@ -95,7 +95,7 @@ export class MiespacioComponent implements AfterViewInit {
   async chargeInfoArtists() {
     let container = document.getElementById('artistas');
 
-    const URL = "http://localhost:5000/users/email/"+localStorage.getItem('email');
+    const URL = "https://hotspotbackend-production.up.railway.app/users/email/"+localStorage.getItem('email');
 
 
     const response = fetch(URL
@@ -110,7 +110,7 @@ export class MiespacioComponent implements AfterViewInit {
       for (let i = 0; i < user.length; i++) {
         const id = user[i];
 
-        const URL2 = "http://localhost:5000/artistas/"+id;
+        const URL2 = "https://hotspotbackend-production.up.railway.app/artistas/"+id;
 
 
         const response = fetch(URL2
@@ -215,7 +215,7 @@ export class MiespacioComponent implements AfterViewInit {
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

@@ -17,7 +17,7 @@ export class GestionArtistasComponent implements AfterViewInit {
   
   async chargeArtistas(){
   
-    const URL = "http://localhost:5000/artistas";
+    const URL = "https://hotspotbackend-production.up.railway.app/artistas";
     
     const response = await fetch(URL
     ).then(response => {
@@ -108,7 +108,7 @@ export class GestionArtistasComponent implements AfterViewInit {
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

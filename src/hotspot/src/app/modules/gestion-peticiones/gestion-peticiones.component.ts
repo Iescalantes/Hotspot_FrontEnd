@@ -19,7 +19,7 @@ export class GestionPeticionesComponent implements AfterViewInit{
 
   async chargeInfo() {
     let id_festival = localStorage.getItem('IDFestival');
-    const URL = "http://localhost:5000/festivales/" + id_festival;
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + id_festival;
 
     const response = await fetch(URL
     ).then(response => {
@@ -63,7 +63,7 @@ export class GestionPeticionesComponent implements AfterViewInit{
             
             if (i < artistas.length) {
 
-              const URL = "http://localhost:5000/artistas/" + artistas[i];
+              const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
 
               const response = fetch(URL
               ).then(response => {
@@ -129,7 +129,7 @@ let cross = document.getElementById('denegar');
 
     check?.addEventListener('click',function updatear() {
 
-      const URL = "http://localhost:5000/festivales/" + localStorage.getItem('IDFestival');
+      const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('IDFestival');
 
       const response = fetch(URL, {
         method: "PUT",
@@ -147,7 +147,7 @@ let cross = document.getElementById('denegar');
 
 
     cross?.addEventListener('click',function deletear() {
-      const URL = "http://localhost:5000/festivales/" + localStorage.getItem('IDFestival');
+      const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('IDFestival');
 
       const response = fetch(URL, {
         method: "DELETE"
@@ -185,7 +185,7 @@ let cross = document.getElementById('denegar');
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

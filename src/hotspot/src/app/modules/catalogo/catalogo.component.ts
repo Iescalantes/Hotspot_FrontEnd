@@ -20,7 +20,7 @@ export class CatalogoComponent implements AfterViewInit {
   // Función para mostrar los 3 festivales más populares
 
   async FestisPopus() {
-    const URL = "http://localhost:5000/festivales";
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales";
 
     const response = await fetch(URL
     ).then(response => {
@@ -77,7 +77,7 @@ export class CatalogoComponent implements AfterViewInit {
   //Funcion para obtener los 4 ultimos festivales novedad
 
   async FestisNovedad() {
-    const URL = "http://localhost:5000/festivales";
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales";
 
     const response = await fetch(URL
     ).then(response => {
@@ -132,7 +132,7 @@ export class CatalogoComponent implements AfterViewInit {
 
   // Función para listar todos los festivales
   async TodosLosFestis() {
-    const URL = "http://localhost:5000/festivales";
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales";
 
     const response = await fetch(URL
     ).then(response => {

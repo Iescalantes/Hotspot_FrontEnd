@@ -22,7 +22,7 @@ export class AddArtsComponent implements AfterViewInit {
 
   // AÑADIR festival a la empresa
   updateBusiness() {
-    const URL = "http://localhost:5000/empresas/email/" + localStorage.getItem('email');
+    const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + localStorage.getItem('email');
     const response = fetch(URL
     ).then(response => {
       if (response.status === 200) {
@@ -34,7 +34,7 @@ export class AddArtsComponent implements AfterViewInit {
       let array = data[0].festivales;
       array.push(localStorage.getItem('prev'));
 
-      const URL2 = "http://localhost:5000/empresas/" + data[0]._id;
+      const URL2 = "https://hotspotbackend-production.up.railway.app/empresas/" + data[0]._id;
       const response2 = fetch(URL2, {
         method: "PUT",
         headers: {
@@ -59,7 +59,7 @@ export class AddArtsComponent implements AfterViewInit {
 
     let nombre = this.artista.apodo;
 
-    const URL = "http://localhost:5000/artistas/nombre/" + nombre;
+    const URL = "https://hotspotbackend-production.up.railway.app/artistas/nombre/" + nombre;
 
     const response = await fetch(URL
     ).then(response => {
@@ -72,7 +72,7 @@ export class AddArtsComponent implements AfterViewInit {
         let array = [];
         array.push(localStorage.getItem('prev'))
 
-        const URL = "http://localhost:5000/artistas";
+        const URL = "https://hotspotbackend-production.up.railway.app/artistas";
         const response = fetch(URL, {
           method: "POST",
           headers: {
@@ -103,7 +103,7 @@ export class AddArtsComponent implements AfterViewInit {
 // GUARDA IDs de ARTISTAS en el FESTIVAL
 
   guardarID() {
-    const URL = "http://localhost:5000/artistas";
+    const URL = "https://hotspotbackend-production.up.railway.app/artistas";
 
     const response = fetch(URL
     ).then(response => {
@@ -112,7 +112,7 @@ export class AddArtsComponent implements AfterViewInit {
       }
       return "error"
     }).then(arts => {
-      const URL2 = "http://localhost:5000/festivales/" + localStorage.getItem('prev');
+      const URL2 = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('prev');
       const response2 = fetch(URL2
       ).then(response => {
         if (response.status === 200) {
@@ -121,10 +121,10 @@ export class AddArtsComponent implements AfterViewInit {
         return "error"
       }).then(data => {
 
-        let array = data.artistas; // Esto tiene que contener los artistas del festival
+        let array = data.artistas;
         array.push(arts[arts.length - 1]._id); 
 
-        const URL3 = "http://localhost:5000/festivales/" + localStorage.getItem('prev');
+        const URL3 = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('prev');
         const response3 = fetch(URL3, {
           method: "PUT",
           headers: {
@@ -171,8 +171,7 @@ export class AddArtsComponent implements AfterViewInit {
       div.id = 'container';
 
       let img = document.createElement('img');
-      //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';

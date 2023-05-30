@@ -12,7 +12,6 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { FestivalesPublicadosComponent } from './festivales-publicados/festivales-publicados.component';
 import { VistaFestivalComponent } from './vista-festival/vista-festival.component';
 import { GestionArtistasComponent } from './gestion-artistas/gestion-artistas.component';
-import { AltaFestivalComponent } from './alta-festival/alta-festival.component';
 import { VistaArtistaComponent } from './vista-artista/vista-artista.component';
 import { GestionListaPeticionesComponent } from './gestion-lista-peticiones/gestion-lista-peticiones.component';
 import { Registration2Component } from './registration2/registration2.component';
@@ -37,7 +36,6 @@ import { AddArtsComponent } from './add-arts/add-arts.component';
     FestivalesPublicadosComponent,
     VistaFestivalComponent,
     GestionArtistasComponent,
-    AltaFestivalComponent,
     VistaArtistaComponent,
     GestionListaPeticionesComponent,
     Registration2Component,

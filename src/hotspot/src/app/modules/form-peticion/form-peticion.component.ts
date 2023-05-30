@@ -21,7 +21,7 @@ export class FormPeticionComponent implements AfterViewInit{
   async registerFestival() {
 
     let idempresa = localStorage.getItem('email')
-    const URL = "http://localhost:5000/empresas/email/" + idempresa;
+    const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + idempresa;
     const response = await fetch(URL
     ).then(response => {
       if (response.status === 200) {
@@ -37,7 +37,7 @@ export class FormPeticionComponent implements AfterViewInit{
       else if (tipo_peticion == 'Business') { bonus2 = true };
 
 
-      const URL = "http://localhost:5000/festivales";
+      const URL = "https://hotspotbackend-production.up.railway.app/festivales";
       const response = fetch(URL, {
         method: "POST",
         headers: {
@@ -64,7 +64,7 @@ export class FormPeticionComponent implements AfterViewInit{
   }
 
   async guardarID() {
-    const URL = "http://localhost:5000/festivales";
+    const URL = "https://hotspotbackend-production.up.railway.app/festivales";
 
   const response = fetch(URL
   ).then(response => {
@@ -119,7 +119,7 @@ export class FormPeticionComponent implements AfterViewInit{
 
       let img = document.createElement('img');
       //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'ruta';
+      img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
       h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';
