@@ -10,7 +10,7 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
   ngAfterViewInit(): void {
     this.RolCheckBusiness();
     this.TodosLosFestis();
-    
+    setTimeout(this.Guardian,100);
   }
 
 
@@ -38,19 +38,21 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
           }
           return "error"
         }).then(data => { 
-
+          console.log(data);
           const element = data;
+          
 
           if (element.confirmado == true) {
   
             let enlace = document.createElement('a');
             enlace.className = "enlaces";
             enlace.href = "vista-festival"
-            enlace.setAttribute('name',element._id);
+            enlace.setAttribute('name',fests[i]);
   
             let card = document.createElement('div');
             card.className = 'card mb-3';
             card.style.maxWidth = '540px';
+            card.style.margin = 'auto';
   
             let row = document.createElement('div');
             row.className="row g-0";

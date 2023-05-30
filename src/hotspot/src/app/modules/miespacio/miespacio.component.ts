@@ -18,7 +18,10 @@ export class MiespacioComponent implements AfterViewInit {
   async chargeInfoFestis() {
     let container = document.getElementById('festivales');
 
-    const URL = "http://localhost:5000/festivales";
+
+
+
+    const URL = "http://localhost:5000/users/email/"+localStorage.getItem('email');
 
 
     const response = fetch(URL
@@ -29,40 +32,56 @@ export class MiespacioComponent implements AfterViewInit {
       return "error"
     }).then(data => {
 
-      for (let i = 0; i < data.length; i++) {
-        const element = data[i];
+      let user = data[0].favFests
 
-        let a = document.createElement('a');
-        a.setAttribute('name',element._id);
-        a.href = 'vista-festival';
-        a.className = 'enlaces'
-        a.style.marginLeft = '1%'
-        a.style.marginRight = '1%'
-        a.style.color = 'white'
+      for (let i = 0; i < user.length; i++) {
         
-        let card = document.createElement('div');
-        card.className = 'card';
-        card.style.width = '18rem'
-        card.style.color = 'black';
-        card.style.background = 'none';
-        card.style.border = '1px solid white';
+        const id = user[i];
+        const URL2 = "http://localhost:5000/festivales/"+id;
 
-        let img = document.createElement('img');
-        img.src = data[i].foto;
 
-        let div = document.createElement('div');
-        div.className = 'card-body'
+        const response = fetch(URL2
+        ).then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          return "error"
+        }).then(data => {
 
-        let p = document.createElement('p');
-        p.className = 'card-text'
-        p.innerHTML = data[i].nombre;
-        p.style.color = 'white'
-
-        div.appendChild(p);
-        card.appendChild(img);
-        card.appendChild(div);
-        a.appendChild(card);
-        container?.appendChild(a);
+          let a = document.createElement('a');
+          a.setAttribute('name',id);
+          a.href = 'vista-festival';
+          a.className = 'enlaces'
+          a.style.marginLeft = '1%'
+          a.style.marginRight = '1%'
+          a.style.color = 'white'
+          
+          let card = document.createElement('div');
+          card.className = 'card';
+          card.style.width = '18rem'
+          card.style.color = 'black';
+          card.style.background = 'none';
+          card.style.border = '1px solid white';
+  
+          let img = document.createElement('img');
+          img.src = data.foto;
+  
+          let div = document.createElement('div');
+          div.className = 'card-body'
+  
+          let p = document.createElement('p');
+          p.className = 'card-text'
+          p.innerHTML = data.nombre;
+          p.style.color = 'white'
+  
+          div.appendChild(p);
+          card.appendChild(img);
+          card.appendChild(div);
+          a.appendChild(card);
+          container?.appendChild(a);
+        }).catch(error => {
+          console.error("Error getting fest data:", error);
+        });
 
       }
       this.GuardianFestis();
@@ -76,7 +95,7 @@ export class MiespacioComponent implements AfterViewInit {
   async chargeInfoArtists() {
     let container = document.getElementById('artistas');
 
-    const URL = "http://localhost:5000/artistas";
+    const URL = "http://localhost:5000/users/email/"+localStorage.getItem('email');
 
 
     const response = fetch(URL
@@ -87,11 +106,23 @@ export class MiespacioComponent implements AfterViewInit {
       return "error"
     }).then(data => {
 
-      for (let i = 0; i < data.length; i++) {
-        const element = data[i];
+      let user = data[0].favArts
+      for (let i = 0; i < user.length; i++) {
+        const id = user[i];
+
+        const URL2 = "http://localhost:5000/artistas/"+id;
+
+
+        const response = fetch(URL2
+        ).then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          return "error"
+        }).then(data => {
 
         let a = document.createElement('a');
-        a.setAttribute('name',element._id);
+        a.setAttribute('name',id);
         a.href = 'vista-artista';
         a.className = 'enlaces'
         a.style.marginLeft = '1%'
@@ -106,14 +137,14 @@ export class MiespacioComponent implements AfterViewInit {
         card.style.border = '1px solid white';
 
         let img = document.createElement('img');
-        img.src = data[i].foto;
+        img.src = data.foto;
 
         let div = document.createElement('div');
         div.className = 'card-body'
 
         let p = document.createElement('p');
         p.className = 'card-text'
-        p.innerHTML = data[i].nombre;
+        p.innerHTML = data.apodo;
         p.style.color = 'white'
 
 
@@ -122,7 +153,9 @@ export class MiespacioComponent implements AfterViewInit {
         card.appendChild(div);
         a.appendChild(card);
         container?.appendChild(a);
-
+      }).catch(error => {
+        console.error("Error getting fest data:", error);
+      });
       }
       this.GuardianArtists();
     })

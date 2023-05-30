@@ -10,28 +10,73 @@ export class AjustesComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.RolCheck();
     this.chargeInfo();
-    this.deleter()
   }
 
-  async deleter() {
+  async deleterUser() {
     const URL = "http://localhost:5000/users/email/" + localStorage.getItem('email');
 
-    const response = fetch(URL, {
+    const response = await fetch(URL
+    ).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return "error"
+    }).then(data => {
+      const URL2 = "http://localhost:5000/users/" + data[0]._id;
+
+    const response = fetch(URL2, {
       method: "DELETE"
     }).then(response => {
+      if (response.status === 200) {
       localStorage.clear();
       localStorage.setItem("loggedUser", 'n');
       setTimeout(window.location.href = "",100);
+      }
     }).catch(error => {
       console.error("Error deleting the user:", error);
     });
+    })
+    .catch(error => {
+      console.error("Error getting fest data:", error);
+    });
+
   };
 
+
+  async deleterBusiness() {
+    const URL = "http://localhost:5000/empresas/email/" + localStorage.getItem('email');
+
+    const response = await fetch(URL
+    ).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return "error"
+    }).then(data => {
+      const URL2 = "http://localhost:5000/empresas/" + data[0]._id;
+
+    const response = fetch(URL2, {
+      method: "DELETE"
+    }).then(response => {
+      if (response.status === 200) {
+      localStorage.clear();
+      localStorage.setItem("loggedUser", 'n');
+      setTimeout(window.location.href = "",100);
+      }
+    }).catch(error => {
+      console.error("Error deleting the business:", error);
+    });
+    })
+    .catch(error => {
+      console.error("Error getting business data:", error);
+    });
+
+  };
 
   async chargeInfo() {
     let email = localStorage.getItem('email');
 
-    if (localStorage.getItem('soyempresa')) {
+    if (localStorage.getItem('soyempresa')=='y') {
       const URL = "http://localhost:5000/empresas/email/" + email;
 
       const response = await fetch(URL
@@ -41,7 +86,6 @@ export class AjustesComponent implements AfterViewInit {
         }
         return "error"
       }).then(data => {
-
         let name = document.getElementById('Name');
         let email = document.getElementById('Email');
         let tlf = document.getElementById('Tlf');
@@ -60,34 +104,41 @@ export class AjustesComponent implements AfterViewInit {
         .catch(error => {
           console.error("Error getting fest data:", error);
         });
-    } else {
+        document.getElementById('deleter')?.addEventListener('click', this.deleterBusiness);
+      } else {
       const URL = "http://localhost:5000/users/email/" + email;
 
       const response = await fetch(URL
-      ).then(response => {
-        if (response.status === 200) {
-          return response.json();
-        }
-        return "error"
-      }).then(data => {
-
-        let name = document.getElementById('Name');
-        let email = document.getElementById('Email');
+        ).then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          return "error"
+        }).then(data => {
+          let name = document.getElementById('Name');
+          let email = document.getElementById('Email');
 
         if (name && email) {
           name.innerHTML = data[0].nombre
-          console.log(name);
           email.innerHTML = data[0].email
         };
 
+        })
+          .catch(error => {
+            console.error("Error getting fest data:", error);
+          });
+          document.getElementById('deleter')?.addEventListener('click', this.deleterUser);
 
-
-      })
-        .catch(error => {
-          console.error("Error getting fest data:", error);
-        });
     }
   };
+
+
+
+
+
+
+
+
 
   async RolCheck(){
     let logged = localStorage.getItem('loggedUser');
