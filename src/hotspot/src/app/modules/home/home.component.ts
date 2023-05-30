@@ -9,6 +9,7 @@ export class HomeComponent implements AfterViewInit{
   
   ngAfterViewInit(): void {
     this.RolCheckAdmin();
+    setTimeout(this.Guardian,100);
   }
 
   async RolCheckAdmin(){
@@ -85,6 +86,20 @@ export class HomeComponent implements AfterViewInit{
     }
 
     };
-  }
+  };
+
+  async Guardian() {
+
+    let enlaces = document.getElementsByClassName('btn-secondary');
+
+      for (let i = 0; i < enlaces.length; i++) {
+        let element = enlaces[i]
+
+        element?.addEventListener('click', function(evt){
+          let nombre = (evt.currentTarget as HTMLElement).getAttribute("name") || "No se ha podido cargar";
+          localStorage.setItem('IDFestival', nombre);
+        })
+      }
+  };
 
 }
