@@ -11,7 +11,7 @@ export class GestionPeticionesComponent implements AfterViewInit{
     this.RolCheckAdmin();
     this.chargeInfo();
     setTimeout(this.Guardian,100);
-    setTimeout(this.alta,50);
+    setTimeout(this.alta,150);
   }
 
 
@@ -136,7 +136,7 @@ let cross = document.getElementById('denegar');
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ verificado: true })
+        body: JSON.stringify({ confirmado: true })
       }).then(response => {
         window.location.href = 'gestion-lista-peticiones';
       }).catch(error => {

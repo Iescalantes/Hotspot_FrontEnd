@@ -90,7 +90,6 @@ export class CatalogoComponent implements AfterViewInit {
 
       for (let i = 0; i < 4; i++) {
         const element = data[i];
-
         if (element.confirmado == true && element.esnovedad == true) {
 
           let lista_novedades = document.getElementById('lista_novedades');

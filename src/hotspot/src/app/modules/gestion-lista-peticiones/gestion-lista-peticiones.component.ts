@@ -11,7 +11,6 @@ export class GestionListaPeticionesComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.RolCheckAdmin()
     this.TodosLosFestis();
-    setTimeout(this.Guardian,100);
   }
 
 
@@ -89,6 +88,7 @@ export class GestionListaPeticionesComponent implements AfterViewInit {
               document.getElementById('listado_festivales')?.appendChild(enlace);
             };
           }
+          this.Guardian();
   }
 })
         .catch(error => {
@@ -102,7 +102,7 @@ export class GestionListaPeticionesComponent implements AfterViewInit {
 
   async Guardian() {
     let enlaces = document.getElementsByClassName('enlaces');
-
+    
       for (let i = 0; i < enlaces.length; i++) {
         let element = enlaces[i]
 
