@@ -15,7 +15,13 @@ legend{
     display: flex;
 }
 
+#lista, #lista_novedades, #lista_populares{
+    text-align: center;
+    justify-content: center;
+}
+
 .imagencarta {
    height: 2px !important;
    width: auto !important;
+   object-fit: cover !important;
 }

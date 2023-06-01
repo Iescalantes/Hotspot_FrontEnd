@@ -9,7 +9,6 @@ export class VistaArtistaComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.chargeInfo();
-    setTimeout(this.Guardian, 100);
   }
 
   async chargeInfo() {
@@ -35,13 +34,17 @@ export class VistaArtistaComponent implements AfterViewInit {
       let alias = document.getElementById('alias');
       let desc = document.getElementById('desc');
       let generos = document.getElementById('generos');
-      if (nombre && alias && desc && generos) {
+      let foto = document.getElementById('foto');
+      if (foto && nombre && alias && desc && generos) {
+        (foto as HTMLImageElement).src = artista.foto;
+        (foto as HTMLImageElement).style.borderRadius = '30px';
         nombre.innerHTML = artista.nombre;
         alias.innerHTML = artista.apodo;
         desc.innerHTML = artista.descripcion;
         generos.innerHTML = artista.generos;
         let festis = data.festivales;
         let festivales = document.getElementsByClassName('enlaces');
+        let festivales2 = document.getElementsByClassName('festival');
         this.Megustas_Status(data._id);
 
         if (festis.length < 1) {
@@ -75,8 +78,9 @@ export class VistaArtistaComponent implements AfterViewInit {
                 }
                 return "error"
               }).then(data => {
+                console.log(festivales[i])
                 festivales[i].setAttribute('name', data._id);
-                festivales[i].innerHTML = data.foto;
+                (festivales2[i] as HTMLImageElement).src = data.foto;
                 festivales[i].setAttribute('href', 'vista-festival');
 
               })
@@ -107,12 +111,12 @@ export class VistaArtistaComponent implements AfterViewInit {
         console.error("Error getting fest data:", error);
       });
 
-
+this.Guardian();
 
   };
 
   async Guardian() {
-    let festivales = document.getElementsByClassName('festival');
+    let festivales = document.getElementsByClassName('enlaces');
 
     for (let i = 0; i < festivales.length; i++) {
       let element = festivales[i]
@@ -181,7 +185,6 @@ export class VistaArtistaComponent implements AfterViewInit {
           estado.className = "bi bi-heart-fill";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart";
-            // Aquí va el put o update pa actualizar el bicho
             let artists = data[0].favArts;
             artists.splice(posicion, 1);
 

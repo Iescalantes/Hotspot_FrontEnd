@@ -10,7 +10,6 @@ export class CatalogoartistasComponent implements AfterViewInit{
 ngAfterViewInit(){
   this.chargeArtistas();
   this.chargeGeneros();
-  setTimeout(this.Guardian,100);
 }
 
 
@@ -44,7 +43,7 @@ async chargeArtistas(){
       enlace.setAttribute('name',element._id);
 
       let imagen = document.createElement('img');
-      imagen.src = 'assets/images/martin-garrix.jpg'
+      imagen.src = element.foto;
       imagen.style.borderRadius = "50%";
       imagen.style.width = "6rem";
       imagen.style.height = "6rem";
@@ -66,7 +65,7 @@ async chargeArtistas(){
     console.error("Error getting fest data:", error);
   });
 
-
+  this.Guardian();
 };
 
 async chargeGeneros(){};

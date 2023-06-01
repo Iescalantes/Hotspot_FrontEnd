@@ -14,7 +14,6 @@ export class CatalogoComponent implements AfterViewInit {
     this.TodosLosFestis();
     this.FestisNovedad();
     this.FestisPopus();
-    setTimeout(this.Guardian,200);
   }
 
   // Función para mostrar los 3 festivales más populares
@@ -40,7 +39,8 @@ export class CatalogoComponent implements AfterViewInit {
           let lista_populares = document.getElementById('lista_populares');
 
           let tarjeta = document.createElement('div');
-          tarjeta.className = "card col-2";
+          tarjeta.className = "card col-10";
+          tarjeta.style.overflow = 'hidden';
 
           let enlace = document.createElement('a');
           enlace.className = "enlaces";
@@ -49,7 +49,10 @@ export class CatalogoComponent implements AfterViewInit {
 
           let img = document.createElement('img');
           img.className = "imagencarta"
-          img.src = "assets/images/Logo.svg";
+          img.src = element.foto;
+          img.style.height = '250px';
+          img.style.width = '300px';
+          img.style.objectFit = 'cover';
           img.alt = "Foto del festival";
 
           let title = document.createElement('p');
@@ -60,14 +63,14 @@ export class CatalogoComponent implements AfterViewInit {
           title.innerHTML = element.nombre
 
           if (lista_populares != null) {
-            enlace.appendChild(img);
-            enlace.appendChild(title);
+            tarjeta.appendChild(img);
+            tarjeta.appendChild(title);
             enlace.appendChild(tarjeta);
             lista_populares.appendChild(enlace);
           }
         }
       }
-
+      this.Guardian();
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
@@ -95,7 +98,8 @@ export class CatalogoComponent implements AfterViewInit {
           let lista_novedades = document.getElementById('lista_novedades');
 
           let tarjeta = document.createElement('div');
-          tarjeta.className = "card col-2";
+          tarjeta.className = "card col-10";
+          tarjeta.style.overflow = 'hidden';
 
           let enlace = document.createElement('a');
           enlace.className = "enlaces";
@@ -104,7 +108,10 @@ export class CatalogoComponent implements AfterViewInit {
 
           let img = document.createElement('img');
           img.className = "imagencarta"
-          img.src = "assets/images/Logo.svg";
+          img.src = element.foto;
+          img.style.height = '250px';
+          img.style.width = '300px';
+          img.style.objectFit = 'cover';
           img.alt = "Foto del festival";
 
           let title = document.createElement('p');
@@ -115,8 +122,8 @@ export class CatalogoComponent implements AfterViewInit {
           title.innerHTML = element.nombre
 
           if (lista_novedades != null) {
-            enlace.appendChild(img);
-            enlace.appendChild(title);
+            tarjeta.appendChild(img);
+            tarjeta.appendChild(title);
             enlace.appendChild(tarjeta);
             lista_novedades.appendChild(enlace);
           }
@@ -150,7 +157,8 @@ export class CatalogoComponent implements AfterViewInit {
           let lista = document.getElementById('lista');
 
           let tarjeta = document.createElement('div');
-          tarjeta.className = "card col-2";
+          tarjeta.className = "card col-10";
+          tarjeta.style.overflow = 'hidden';
 
           let enlace = document.createElement('a');
           enlace.className = "enlaces";
@@ -159,7 +167,10 @@ export class CatalogoComponent implements AfterViewInit {
 
           let img = document.createElement('img');
           img.className = "imagencarta"
-          img.src = "assets/images/Logo.svg";
+          img.src = element.foto;
+          img.style.height = '250px';
+          img.style.width = '300px';
+          img.style.objectFit = 'cover';
           img.alt = "Foto del festival";
 
           let title = document.createElement('p');
@@ -170,8 +181,8 @@ export class CatalogoComponent implements AfterViewInit {
           title.innerHTML = element.nombre
 
           if (lista != null) {
-            enlace.appendChild(img);
-            enlace.appendChild(title);
+           tarjeta.appendChild(img);
+            tarjeta.appendChild(title);
             enlace.appendChild(tarjeta);
             lista.appendChild(enlace);
           }
