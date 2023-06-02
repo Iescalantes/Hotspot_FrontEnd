@@ -10,7 +10,6 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
   ngAfterViewInit(): void {
     this.RolCheckBusiness();
     this.TodosLosFestis();
-    setTimeout(this.Guardian,100);
   }
 
 
@@ -48,6 +47,8 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
             enlace.className = "enlaces";
             enlace.href = "vista-festival"
             enlace.setAttribute('name',fests[i]);
+            enlace.style.textDecoration = 'none';
+            enlace.style.color = '#571AFF';
   
             let card = document.createElement('div');
             card.className = 'card mb-3';
@@ -63,6 +64,10 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
             let img = document.createElement('img');
             img.className="img-fluid rounded-start"
             img.src = element.foto;
+            img.style.height = '400px';
+            img.style.width = '500px';
+            img.style.objectFit = 'cover';
+            img.alt = "Foto del festival";
   
             let col2 = document.createElement('div');
             col2.className="col-md-8";
@@ -153,6 +158,7 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
               document.getElementById('listado_festivales')?.appendChild(card);
             };
           }
+          this.Guardian();
         })
         .catch(error => {
           console.error("Error getting fest data:", error);

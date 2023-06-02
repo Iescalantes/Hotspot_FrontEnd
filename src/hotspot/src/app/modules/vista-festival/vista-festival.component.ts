@@ -146,7 +146,7 @@ async Megustas_Status(id_festival: String){
       }
     }
 
-      if (!guardado && estado){
+      if (!guardado && estado && localStorage.getItem('tipo')!='admin'){
         estado.className = "bi bi-heart";
         estado.addEventListener("click",async function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
@@ -172,7 +172,7 @@ async Megustas_Status(id_festival: String){
           });
 
         })
-      } else if(guardado && estado){
+      } else if(guardado && estado && localStorage.getItem('tipo')!='admin'){
         estado.className = "bi bi-heart-fill";
         estado.addEventListener("click",async function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart";

@@ -155,7 +155,7 @@ this.Guardian();
           }
         }
 
-        if (!guardado && estado) {
+        if (!guardado && estado && localStorage.getItem('tipo')!='admin') {
           estado.className = "bi bi-heart";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
@@ -181,7 +181,7 @@ this.Guardian();
             });
 
           })
-        } else if (guardado && estado) {
+        } else if (guardado && estado && localStorage.getItem('tipo')!='admin') {
           estado.className = "bi bi-heart-fill";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart";

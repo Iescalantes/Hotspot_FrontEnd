@@ -180,6 +180,8 @@ export class CatalogoComponent implements AfterViewInit {
           title.style.textAlign = "center"
           title.innerHTML = element.nombre
 
+
+
           if (lista != null) {
            tarjeta.appendChild(img);
             tarjeta.appendChild(title);

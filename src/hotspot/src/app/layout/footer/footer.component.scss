@@ -13,8 +13,16 @@
     }
 
     footer{
-        background-color: #571AFF;
-        
+    background: linear-gradient(to bottom right, black, #571AFF);
+    };
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-link:hover, .rrss{
+        color: #FFA600 !important;
     }
 
     *{
