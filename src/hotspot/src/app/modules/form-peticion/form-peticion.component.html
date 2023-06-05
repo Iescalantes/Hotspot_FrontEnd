@@ -11,14 +11,23 @@
                 <label for="username">Nombre:</label>
                 <br>
                 <input type="text" id="username" name = "nombre" [(ngModel)]="festival.nombre">
+                <div *ngIf="!checkName()" class="alert alert-danger col-8">
+                    El nombre debe tener más de 2 caracteres.
+                </div>
                 <br>
                 <label for="local">Localización:</label>
                 <br>
                 <input type="text" id="local" name = "localizacion" [(ngModel)]="festival.localizacion">
+                <div *ngIf="!checkLocal()" class="alert alert-danger col-8">
+                    La localización no puede estar vacía.
+                </div>
                 <br>
                 <label for="local">Descripción:</label>
                 <br>
                 <textarea id="desc" name = "descripcion" [(ngModel)]="festival.descripcion"></textarea>
+                <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
+                    Proporcione una breve descripción de 15 caracteres.
+                </div>
                 <br>
                 <label for="edad">Obligatorio +18:</label>
                 <br>
@@ -31,10 +40,13 @@
                 <label for="img">Subir foto:</label>
                 <br>
                 <input type="text" id="img" name = "foto" [(ngModel)]="festival.foto">
+                <div *ngIf="!checkPic()" class="alert alert-danger col-8">
+                    Debe definir una foto.
+                </div>
                 <br>
-            
         </div>
         <div id="final">
+            <br>
             <button type="submit">Seguir</button>
         </div>
         </form>

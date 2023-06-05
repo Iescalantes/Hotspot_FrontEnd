@@ -15,9 +15,7 @@ export class NavigationBusinessComponent implements AfterViewInit {
   
   cerrarSesion(){
     
-    localStorage.removeItem("tipo");
-    localStorage.removeItem("email");
-    localStorage.removeItem("tipo");
+    localStorage.clear();
     localStorage.setItem("loggedUser", 'n');
 
   };

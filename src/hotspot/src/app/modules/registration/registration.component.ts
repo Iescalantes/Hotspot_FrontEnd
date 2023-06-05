@@ -19,9 +19,24 @@ export class RegistrationComponent {
     return this.user.password === this.user.confirmPassword;
 }
 
+checkName() {
+  return this.user.nombre.length>2;
+}
+
+checkEmail() {
+  return this.user.email.length>2;
+}
+
+confirmData(){
+  if (this.checkEmail() && this.checkName() && this.matchPasswords()){
+    return true;
+  }else{
+    return false;
+  };
+};
 
 async registerUser() {
-  if (this.matchPasswords()) {
+  if (this.confirmData()) {
     const URL = "https://hotspotbackend-production.up.railway.app/users";
     const response = await fetch(URL, {
       method: "POST",
@@ -42,7 +57,7 @@ async registerUser() {
       console.error("Error creando el usuario:", error);
     });
   } else {
-    window.location.href = "register";
+    alert('Rellene todos los datos de forma correcta.');
   }
 }
 }

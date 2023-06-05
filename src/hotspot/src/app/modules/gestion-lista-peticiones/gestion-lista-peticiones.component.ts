@@ -36,10 +36,13 @@ export class GestionListaPeticionesComponent implements AfterViewInit {
             enlace.className = "enlaces";
             enlace.href = "gestion-peticiones"
             enlace.setAttribute('name',element._id);
+            enlace.style.textDecoration = 'none';
+            enlace.style.color = '#571AFF';
 
             let card = document.createElement('div');
             card.className = 'card mb-3';
             card.style.maxWidth = '540px';
+            card.style.margin = 'auto';
   
             let row = document.createElement('div');
             row.className="row g-0";
@@ -50,6 +53,10 @@ export class GestionListaPeticionesComponent implements AfterViewInit {
             let img = document.createElement('img');
             img.className="img-fluid rounded-start"
             img.src = element.foto;
+            img.style.height = '400px';
+            img.style.width = '500px';
+            img.style.objectFit = 'cover';
+            img.alt = "Foto del festival";
   
             let col2 = document.createElement('div');
             col2.className="col-md-8";

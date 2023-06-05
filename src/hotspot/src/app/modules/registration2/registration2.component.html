@@ -7,10 +7,16 @@
                 <label for="email">Correo electrónico:</label>
                 <br>
                 <input type="email" id="email" name = "email" [(ngModel)]="empresa.email">
+                <div *ngIf="!checkEmail()" class="alert alert-danger col-8">
+                    El email es obligatorio.
+                </div>
                 <br>
                 <label for="username">Empresa:</label>
                 <br>
                 <input type="text" id="username" name = "nombre" [(ngModel)]="empresa.nombre">
+                <div *ngIf="!checkName()" class="alert alert-danger col-8">
+                    El nombre debe tener almenos 2 carácteres.
+                </div>
                 <br>
                 <label for="pswd">Contraseña:</label>
                 <br>
@@ -27,13 +33,19 @@
                 <label for="tlf">Teléfono:</label>
                 <br>
                 <input type="tel" id="tlf" name = "telefono" [(ngModel)]="empresa.tlf">
+                <div *ngIf="!checkTel()" class="alert alert-danger col-8">
+                    Respete el formato de los números de teléfono.
+                </div>
                 <br>
                 <label for="desc">Descripción:</label>
                 <br>
                 <textarea id="desc" name = "descripcion" [(ngModel)]="empresa.desc"></textarea>
+                <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
+                    Introduzca una breve descripción de almenos 10 carácteres.
+                </div>
             </div>
             <div id="derecha" class="col-5">
-                <label for="img">Subir foto:</label>
+                <label for="img">Pegar el enlace de la foto:</label>
                 <br>
                 <input type="text" id="img" name = "foto" [(ngModel)]="empresa.foto">
                 <br>

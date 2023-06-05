@@ -17,9 +17,33 @@ export class FormPeticionComponent implements AfterViewInit{
     return new Festival('', '', new Date(), '', '', false, false, false, [], false, 0, '');
   }
 
+  checkName() {
+    return this.festival.nombre.length>2;
+  }
+
+  checkDesc() {
+    return this.festival.descripcion.length>15;
+  }
+  
+  checkLocal() {
+    return this.festival.localizacion.length>0;
+  }
+
+  checkPic() {
+    return this.festival.foto.length>0;
+  }
+
+  
+  confirmData(){
+    if (this.checkDesc() && this.checkName() && this.checkLocal() && this.checkPic()){
+      return true;
+    }else{
+      return false;
+    };
+  };
 
   async registerFestival() {
-
+if(this.confirmData()){
     let idempresa = localStorage.getItem('email')
     const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + idempresa;
     const response = await fetch(URL
@@ -29,6 +53,7 @@ export class FormPeticionComponent implements AfterViewInit{
       }
       return "error"
     }).then(data => {
+      console.log(data)
       let id_empresa = data[0]._id;
       let tipo_peticion = localStorage.getItem('clase');
       let bonus1 = false;
@@ -60,7 +85,9 @@ export class FormPeticionComponent implements AfterViewInit{
       .catch(error => {
         console.error("Error getting fest data:", error);
       });
-
+    }else{
+      alert('Rellena todos los datos de forma correcta.');
+    }
   }
 
   async guardarID() {
@@ -97,7 +124,7 @@ export class FormPeticionComponent implements AfterViewInit{
 
 
   async RolCheckBusiness(){
-    let rol = localStorage.getItem('soyempresa');
+    let rol = localStorage.getItem('loggedEmpresa');
     let logged = localStorage.getItem('loggedUser');
 
     

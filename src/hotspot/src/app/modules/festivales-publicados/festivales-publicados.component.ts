@@ -111,6 +111,9 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
             let card = document.createElement('div');
             card.className = 'card mb-3';
             card.style.maxWidth = '540px';
+            card.style.margin = 'auto';
+            card.style.textDecoration = 'none';
+            card.style.color = '#571AFF';
   
             let row = document.createElement('div');
             row.className="row g-0";
@@ -121,6 +124,10 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
             let img = document.createElement('img');
             img.className="img-fluid rounded-start"
             img.src = element.foto;
+            img.style.height = '400px';
+            img.style.width = '500px';
+            img.style.objectFit = 'cover';
+            img.alt = "Foto del festival";
   
             let col2 = document.createElement('div');
             col2.className="col-md-8";
@@ -187,7 +194,7 @@ export class FestivalesPublicadosComponent implements AfterViewInit{
 
   
   async RolCheckBusiness(){
-    let rol = localStorage.getItem('soyempresa');
+    let rol = localStorage.getItem('loggedEmpresa');
     let logged = localStorage.getItem('loggedUser');
 
     

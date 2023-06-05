@@ -8,10 +8,9 @@ body{
     min-height: 500px;
 }
 
-#divpadre{
-    display: flex;
-}
-
 #listado{
     display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -19,6 +19,33 @@ export class AddArtsComponent implements AfterViewInit {
     return new Artista('', '', '', [], '', [], []);
   }
 
+  checkName() {
+    return this.artista.nombre.length>0;
+  }
+
+  checkDesc() {
+    return this.artista.descripcion.length>15;
+  }
+
+  checkApodo() {
+    return this.artista.apodo.length>0;
+  }
+
+  checkGen() {
+    return this.artista.generos.length>0;
+  }
+
+  checkPic() {
+    return this.artista.foto.length>0;
+  }
+
+  confirmData(){
+    if (this.checkDesc() && this.checkApodo() && this.checkName() && this.checkGen() && this.checkPic()){
+      return true;
+    }else{
+      return false;
+    };
+  };
 
   // AÑADIR festival a la empresa
   updateBusiness() {
@@ -56,6 +83,8 @@ export class AddArtsComponent implements AfterViewInit {
   // REGISTRA ARTISTA Y LE DEFINE TAMBIEN EL FESTIVAL
 
   async registerArtista() {
+
+    if (this.confirmData()){
 
     let nombre = this.artista.apodo;
 
@@ -97,7 +126,9 @@ export class AddArtsComponent implements AfterViewInit {
     }).catch(error => {
       console.error("Error getting artist data:", error);
     });
-
+  }else{
+    alert('Rellena todos los campos correctamente');
+  }
   }
 
 // GUARDA IDs de ARTISTAS en el FESTIVAL
@@ -150,7 +181,7 @@ export class AddArtsComponent implements AfterViewInit {
   };
 
   async RolCheckBusiness(){
-    let rol = localStorage.getItem('soyempresa');
+    let rol = localStorage.getItem('loggedEmpresa');
     let logged = localStorage.getItem('loggedUser');
 
     

@@ -11,24 +11,43 @@
             <form id="formulario" class="col-12" (ngSubmit) = "registerArtista()" #registerform = "ngForm">   
                 <label for="name">Introduzca el nombre real del artista:</label>
                 <input type="text" id="name" name="name" [(ngModel)]="artista.nombre">
+                <div *ngIf="!checkName()" class="alert alert-danger col-8">
+                    El campo nombre no puede estar vacío.
+                </div>
                 <br>
                 <label for="apodo">Introduzca el apodo o nombre artístico del artista:</label>
                 <input type="text" id="apodo" name="apodo" [(ngModel)]="artista.apodo">
+                <div *ngIf="!checkApodo()" class="alert alert-danger col-8">
+                    El campo apodo no puede estar vacío.
+                </div>
                 <br>
                 <label for="gen">Introduzca los géneros de música que pertenezcan al artista separados por espacios:</label>
                 <input type="text" id="gen" name="gen" [(ngModel)]="artista.generos">
+                <div *ngIf="!checkGen()" class="alert alert-danger col-8">
+                    Introduzca al menos un género.
+                </div>
                 <br>
                 <label for="desc">Introduzca la descripción del artista:</label>
-                <textarea id="desc" name="desc" [(ngModel)]="artista.descripcion"></textarea>
+                <br>
+                <textarea id="desc" name="desc" [(ngModel)]="artista.descripcion" class="col-11"></textarea>
+                <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
+                    El campo descripción no puede estar vacío.
+                </div>
                 <br>
                 <label for="tags">Introduzca etiquetas que describan al artista separadas por espacios:</label>
                 <input type="text" id="tags" name="tags" [(ngModel)]="artista.tags">
                 <br>
-                <label for="text">Subir foto:</label>
+                <br>
+                <label for="text">Subir foto:</label><br>
                 <input type="text" id="foto" name="foto" [(ngModel)]="artista.foto">
+                <div *ngIf="!checkPic()" class="alert alert-danger col-8">
+                    Debe definir una foto.
+                </div>
+                <br>
+                <br>
                 <button id="addArtist" type="submit">Añadir</button>
             </form>
-            <button id="finish">Finalizar</button>
+            <button id="finish" class="col-5">Finalizar</button>
         </div>
     </div>
 </body>

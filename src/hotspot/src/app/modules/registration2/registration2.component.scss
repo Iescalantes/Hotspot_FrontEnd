@@ -4,7 +4,7 @@
 }
 
 body{
-    height: 700px !important;
+    min-height: 700px !important;
     margin-top: 5% !important;
 }
 #tarjeta{
@@ -12,7 +12,14 @@ body{
     margin: auto;
     border-radius: 5px;
     padding-top: 5%;
-    height: 650px;
+    padding-bottom: 2%;
+    min-height: 650px;
+}
+
+.alert{
+    background-color: red;
+    border: rgb(189, 0, 0) 2px solid;
+    
 }
 
 textarea{
@@ -25,9 +32,6 @@ label{
 
 button{
     color: black;
-}
-body{
-height: 500px;
 }
 
 #formulario{

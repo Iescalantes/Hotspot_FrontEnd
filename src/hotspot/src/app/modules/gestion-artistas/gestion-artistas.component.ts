@@ -10,7 +10,6 @@ export class GestionArtistasComponent implements AfterViewInit {
   ngAfterViewInit(){
     this.RolCheckAdmin();
     this.chargeArtistas();
-    setTimeout(this.Guardian,100);
   }
   
   
@@ -45,7 +44,7 @@ export class GestionArtistasComponent implements AfterViewInit {
         enlace.setAttribute('name',element._id);
   
         let imagen = document.createElement('img');
-        imagen.src = 'assets/images/martin-garrix.jpg'
+        imagen.src = element.foto;
         imagen.style.borderRadius = "50%";
         imagen.style.width = "6rem";
         imagen.style.height = "6rem";
@@ -57,10 +56,13 @@ export class GestionArtistasComponent implements AfterViewInit {
         p.style.marginTop = 'auto';
         p.style.marginBottom = 'auto';
         
+let espacio = document.createElement('br');
+
         enlace.appendChild(imagen);
         enlace.appendChild(p);
         card.appendChild(enlace);
         listado?.appendChild(card);
+        listado?.appendChild(espacio);
         
       }
   
@@ -69,6 +71,7 @@ export class GestionArtistasComponent implements AfterViewInit {
       console.error("Error getting fest data:", error);
     });
 
+    this.Guardian();
   };
   
   

@@ -38,7 +38,9 @@ export class VistaFestivalComponent implements AfterViewInit {
         let enlaces = document.getElementsByClassName('enlaces');
         let artistas2 = document.getElementsByClassName('artistas');
         this.Megustas_Status(data._id);
-
+        let iconos = document.getElementsByClassName('flechas');
+        let contador = 0;
+        let save = 0;
 
         if (artistas.length < 1) {
 
@@ -46,7 +48,6 @@ export class VistaFestivalComponent implements AfterViewInit {
             const element = enlaces[i];
             element.innerHTML = "";
           }
-          let iconos = document.getElementsByClassName('flechas');
           iconos[0].className = "";
           iconos[0].className = "";
           let aviso = document.createElement('b');
@@ -54,9 +55,6 @@ export class VistaFestivalComponent implements AfterViewInit {
           document.getElementById('artista_lista')?.appendChild(aviso);
 
         } else {
-
-          let contador = 0;
-          let save = 0;
 
           for (let i = save; i < enlaces.length; i++) {
             
@@ -74,6 +72,7 @@ export class VistaFestivalComponent implements AfterViewInit {
                 enlaces[i].setAttribute('name',data._id);
                 (artistas2[i] as HTMLImageElement).src = data.foto;
                 enlaces[i].setAttribute('href','vista-artista');
+                
 
               })
                 .catch(error => {
@@ -85,16 +84,67 @@ export class VistaFestivalComponent implements AfterViewInit {
               enlaces[i].innerHTML = "";
 
             }
-
             contador++;
 
             if (contador == 4) {
+              save = i+1;
               contador = 0;
-              save = i;
               break;
             };
 
           }
+
+
+          let izq = iconos[0];
+          let der = iconos[1];
+
+          izq.addEventListener('click',function prev() {
+
+            window.location.href='vista-festival';
+          });
+
+          der.addEventListener('click',function next() {
+
+            for (let i = save; contador < enlaces.length && save<artistas.length; i++) {
+              if (i < artistas.length) {
+  
+                const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
+  
+                const response = fetch(URL
+                ).then(response => {
+                  if (response.status === 200) {
+                    return response.json();
+                  }
+                  return "error"
+                }).then(data => {
+                  console.log(data.nombre);
+                  enlaces[contador].setAttribute('name',data._id);
+                  (artistas2[contador] as HTMLImageElement).src = data.foto; // ¿Por qué pilla una foto distinta?
+                  enlaces[contador].setAttribute('href','vista-artista');
+  
+                })
+                  .catch(error => {
+                    console.error("Error getting fest data:", error);
+                  });
+  
+              } else {
+  
+                enlaces[contador].innerHTML = "";
+  
+              }
+  
+              contador++;
+  
+              if (contador == 4) {
+                contador = 0;
+                save = i+1;
+                break;
+              };
+  
+            }
+
+          }
+            );
         }
       }
 
@@ -150,7 +200,6 @@ async Megustas_Status(id_festival: String){
         estado.className = "bi bi-heart";
         estado.addEventListener("click",async function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
-          // Aquí va el put o update pa actualizar el bicho
           let festis = data[0].favFests;
           festis.push(localStorage.getItem('IDFestival'));
 
@@ -176,7 +225,6 @@ async Megustas_Status(id_festival: String){
         estado.className = "bi bi-heart-fill";
         estado.addEventListener("click",async function(evt){
           (evt.currentTarget as HTMLElement).className = "bi bi-heart";
-          // Aquí va el put o update pa actualizar el bicho
           let festis = data[0].favFests;
           festis.splice(posicion,1);
 

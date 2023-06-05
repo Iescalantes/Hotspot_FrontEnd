@@ -7,11 +7,17 @@
                 <label for="email">Correo electrónico:</label>
                 <br>
                 <input type="email" id="email" name = "email" [(ngModel)]="user.email">
+                <div *ngIf="!checkEmail()" class="alert alert-danger col-8">
+                    El email es obligatorio.
+                </div>
                 <br>
                 <label for="username">Usuario:</label>
                 <br>
                 <input type="text" id="username" name = "nombre" [(ngModel)]="user.nombre">
                 <br>
+                <div *ngIf="!checkName()" class="alert alert-danger col-8">
+                    El nombre debe tener almenos 2 carácteres.
+                </div>
                 <label for="pswd">Contraseña:</label>
                 <br>
                 <input type="password" id="pswd" name = "password" [(ngModel)]="user.password">
@@ -21,7 +27,7 @@
                 <input type="password" id="pswd2" name = "confirmPassword" [(ngModel)]="user.confirmPassword">
                 <br>
                 <br>
-                <div *ngIf="!matchPasswords()" class="alert alert-danger">
+                <div *ngIf="!matchPasswords()" class="alert alert-danger col-8">
                     Las contraseñas son distintas
                 </div>
             </div>
@@ -29,8 +35,8 @@
                 <label for="date">Fecha de nacimiento:</label>
                 <br>
                 <input type="date" id="date" name = "fechanacimiento" [(ngModel)]="user.fechanacimiento">
-                <br>
-                <label for="img">Subir foto:</label>
+                <br> 
+                <label for="img">Pegar enlace de la foto:</label>
                 <br>
                 <input type="text" id="img" name = "foto" [(ngModel)]="user.foto">
                 <br>

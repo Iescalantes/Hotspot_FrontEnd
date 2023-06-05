@@ -28,10 +28,8 @@ export class Login2Component {
       }).then(response => {
         if (response.status === 200) {
           localStorage.setItem("loggedUser", "y");
-          response.json().then(user => {
           localStorage.setItem("email", this.empresa.email);
-          localStorage.setItem('soyempresa','y');
-          });
+          localStorage.setItem('loggedEmpresa','y');
           window.location.href = "";
         } else {
           console.log("Error")

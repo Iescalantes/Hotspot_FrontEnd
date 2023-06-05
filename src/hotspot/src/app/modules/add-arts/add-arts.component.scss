@@ -12,6 +12,7 @@ body{
     margin: auto;
     border-radius: 5px;
     padding-top: 5%;
+    padding-bottom: 2%;
     min-height: 500px;
 }
 
@@ -26,8 +27,11 @@ label{
 button{
     color: black;
 }
-body{
-height: 500px;
+
+.alert{
+    background-color: red;
+    border: rgb(189, 0, 0) 2px solid;
+    
 }
 
 #formulario{
@@ -42,4 +46,9 @@ a{
 input{
     color: black;
     width: 90%;
+}
+
+#finish{
+    width: 20%;
+    margin: auto;
 }

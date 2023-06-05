@@ -17,9 +17,33 @@ export class Registration2Component {
     return this.empresa.password === this.empresa.confirmPassword;
 }
 
+  checkTel() {
+    return this.empresa.tlf > 99999999 && this.empresa.tlf < 1000000000;
+  }
+
+  checkName() {
+   return this.empresa.nombre.length>2;
+  }
+
+  checkEmail() {
+    return this.empresa.email.length>2;
+  }
+
+  checkDesc() {
+    return this.empresa.desc.length>10;
+  }
+
+ confirmData(){
+    if (this.checkDesc() && this.checkEmail() && this.checkName() && this.checkTel() && this.matchPasswords()){
+      return true;
+    }else{
+      return false;
+    };
+  };
+
 
 async registerEmpresa() {
-  if (this.matchPasswords()) {
+  if (this.confirmData()) {
     const URL = "https://hotspotbackend-production.up.railway.app/empresas";
     const response = await fetch(URL, {
       method: "POST",
@@ -32,6 +56,7 @@ async registerEmpresa() {
         localStorage.setItem("loggedEmpresa", "y");
         response.json().then(empresa => console.log(empresa.nombre));
         localStorage.setItem("empresa", this.empresa.nombre);
+        localStorage.setItem("email", this.empresa.email);
         window.location.href = "";
       } else {
         location.reload();
@@ -40,7 +65,7 @@ async registerEmpresa() {
       console.error("Error creando la empresa:", error);
     });
   } else {
-    window.location.href = "registration2";
+    alert('Rellene todos los datos de forma correcta.');
   }
 }
 }

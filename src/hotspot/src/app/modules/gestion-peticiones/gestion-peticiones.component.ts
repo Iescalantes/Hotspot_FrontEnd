@@ -29,16 +29,20 @@ export class GestionPeticionesComponent implements AfterViewInit{
       return "error"
     }).then(data => {
       let festi = data;
+      let foto = document.getElementById('foto');
       let nombre = document.getElementById('nombre');
       let ubicacion = document.getElementById('ubicacion');
       let desc = document.getElementById('desc');
 
-      if (nombre && ubicacion && desc) {
+      if (foto && nombre && ubicacion && desc) {
+        (foto as HTMLImageElement).src = festi.foto;
+        (foto as HTMLImageElement).style.borderRadius = '30px';
         nombre.innerHTML = festi.nombre;
         ubicacion.innerHTML = festi.localizacion;
         desc.innerHTML = festi.descripcion;
         let artistas = data.artistas;
         let enlaces = document.getElementsByClassName('enlaces');
+        let artistas2 = document.getElementsByClassName('artistas');
 
 
         if (artistas.length < 1) {
@@ -73,7 +77,7 @@ export class GestionPeticionesComponent implements AfterViewInit{
                 return "error"
               }).then(data => {
                 enlaces[i].setAttribute('name',data._id);
-                enlaces[i].innerHTML = data.foto;
+                (artistas2[i] as HTMLImageElement).src = data.foto;
                 enlaces[i].setAttribute('href','vista-artista');
 
               })

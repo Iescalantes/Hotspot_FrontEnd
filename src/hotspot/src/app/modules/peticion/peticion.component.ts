@@ -26,7 +26,7 @@ export class PeticionComponent implements AfterViewInit{
   };
 
   async RolCheckBusiness(){
-    let rol = localStorage.getItem('soyempresa');
+    let rol = localStorage.getItem('loggedEmpresa');
     let logged = localStorage.getItem('loggedUser');
 
     

@@ -18,7 +18,7 @@ export class SkeletonComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     let navigation;
-    if(localStorage.getItem("loggedUser") == "y" && localStorage.getItem('soyempresa') == 'y' ){
+    if(localStorage.getItem("loggedUser") == "y" && localStorage.getItem('loggedEmpresa') == 'y' ){
       navigation = 2;
     }else if (localStorage.getItem("loggedUser") == "y" && localStorage.getItem("tipo") == "cliente"){
       navigation = 3;

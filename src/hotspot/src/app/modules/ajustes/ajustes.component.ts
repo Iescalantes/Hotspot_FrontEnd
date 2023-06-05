@@ -76,7 +76,7 @@ export class AjustesComponent implements AfterViewInit {
   async chargeInfo() {
     let email = localStorage.getItem('email');
 
-    if (localStorage.getItem('soyempresa')=='y') {
+    if (localStorage.getItem('loggedEmpresa')=='y') {
       const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + email;
 
       const response = await fetch(URL
