@@ -12,12 +12,13 @@ export class VistaArtistaComponent implements AfterViewInit {
   }
 
   async chargeInfo() {
+    let ya_mostrados: String[] = [];
     let id_artista = localStorage.getItem('IDArtista');
     let papelera = document.getElementById('maspalla');
-    if (localStorage.getItem('tipo')!='admin' && papelera){
+    if (localStorage.getItem('tipo') != 'admin' && papelera) {
       papelera.innerHTML = '';
-    } else{
-      papelera?.addEventListener('click',this.deleteArt);
+    } else {
+      papelera?.addEventListener('click', this.deleteArt);
     };
 
     const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + id_artista;
@@ -46,14 +47,13 @@ export class VistaArtistaComponent implements AfterViewInit {
         let festivales = document.getElementsByClassName('enlaces');
         let festivales2 = document.getElementsByClassName('festival');
         this.Megustas_Status(data._id);
-
+        let iconos = document.getElementsByClassName('flechas');
         if (festis.length < 1) {
 
           for (let i = 0; i < festivales.length; i++) {
             const element = festivales[i];
             element.innerHTML = "";
           }
-          let iconos = document.getElementsByClassName('flechas');
           iconos[0].className = "";
           iconos[0].className = "";
           let aviso = document.createElement('b');
@@ -78,10 +78,11 @@ export class VistaArtistaComponent implements AfterViewInit {
                 }
                 return "error"
               }).then(data => {
-                console.log(festivales[i])
+
                 festivales[i].setAttribute('name', data._id);
                 (festivales2[i] as HTMLImageElement).src = data.foto;
                 festivales[i].setAttribute('href', 'vista-festival');
+                ya_mostrados.push(festis[i]);
 
               })
                 .catch(error => {
@@ -103,6 +104,85 @@ export class VistaArtistaComponent implements AfterViewInit {
             };
 
           }
+
+          let izq = iconos[0];
+          let der = iconos[1];
+
+          izq.addEventListener('click', function prev() {
+
+            window.location.href = 'vista-artista';
+          });
+
+          der.addEventListener('click', function next() {
+
+           let contador2 = 0;
+           let img1 = document.getElementById('img1');
+           let enl1 = document.getElementById('enl1');
+           let enl2 = document.getElementById('enl2');
+           let enl3 = document.getElementById('enl3');
+           let enl4 = document.getElementById('enl4');
+           let img2 = document.getElementById('img2');
+           let img3 = document.getElementById('img3');
+           let img4 = document.getElementById('img4');
+           if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4){
+            (img1 as HTMLImageElement).src='';
+            (img2 as HTMLImageElement).src='';
+            (img3 as HTMLImageElement).src='';
+            (img4 as HTMLImageElement).src='';
+            enl1.setAttribute('href','');
+            enl2.setAttribute('href','');
+            enl3.setAttribute('href','');
+            enl4.setAttribute('href','');
+           }
+
+           
+           for (let i = 0; i < festis.length && contador2<4; i++) {
+
+            
+            const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
+
+              const response = fetch(URL
+              ).then(async response => {
+                if (response.status === 200) {
+                  const data = await response.json();
+                }
+                return "error"
+              }).then(data => {
+
+              let verify = ya_mostrados.indexOf(festis[i]);
+
+            if(verify<0){
+              
+              const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
+
+              const response = fetch(URL
+              ).then(response => {
+                if (response.status === 200) {
+                  return response.json();
+                }
+                return "error"
+              }).then(data => {
+                festivales[contador2].setAttribute('name', data._id);
+                (festivales2[contador2] as HTMLImageElement).src = data.foto;
+                festivales[contador2].setAttribute('href', 'vista-festival');
+                ya_mostrados.push(festis[i]);
+                contador2++;
+                save=i;
+          })
+          .catch(error => {
+            console.error("Error getting fest data:", error);
+          });
+            }
+          })
+          .catch(error => {
+            console.error("Error getting fest data:", error);
+          });
+
+           }
+
+
+          }
+          );
         }
 
       }
@@ -111,7 +191,7 @@ export class VistaArtistaComponent implements AfterViewInit {
         console.error("Error getting fest data:", error);
       });
 
-this.Guardian();
+    this.Guardian();
 
   };
 
@@ -155,7 +235,7 @@ this.Guardian();
           }
         }
 
-        if (!guardado && estado && localStorage.getItem('tipo')!='admin') {
+        if (!guardado && estado && localStorage.getItem('tipo') != 'admin') {
           estado.className = "bi bi-heart";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
@@ -181,7 +261,7 @@ this.Guardian();
             });
 
           })
-        } else if (guardado && estado && localStorage.getItem('tipo')!='admin') {
+        } else if (guardado && estado && localStorage.getItem('tipo') != 'admin') {
           estado.className = "bi bi-heart-fill";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart";
@@ -217,16 +297,16 @@ this.Guardian();
 
 
 
-async deleteArt(){
-  const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + localStorage.getItem('IDArtista');
+  async deleteArt() {
+    const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + localStorage.getItem('IDArtista');
 
-  const response = fetch(URL, {
-    method: "DELETE"
-  }).then(response => {
-    window.location.href = 'gestion-artistas';
-  }).catch(error => {
-    console.error("Error deleting the artist:", error);
-  });
-};
+    const response = fetch(URL, {
+      method: "DELETE"
+    }).then(response => {
+      window.location.href = 'gestion-artistas';
+    }).catch(error => {
+      console.error("Error deleting the artist:", error);
+    });
+  };
 
 }

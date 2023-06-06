@@ -12,6 +12,7 @@ export class VistaFestivalComponent implements AfterViewInit {
   }
 
   async chargeInfo() {
+    let ya_mostrados: String[] = [];
     let id_festival = localStorage.getItem('IDFestival');
     const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + id_festival;
 
@@ -36,7 +37,12 @@ export class VistaFestivalComponent implements AfterViewInit {
         desc.innerHTML = festi.descripcion;
         let artistas = data.artistas;
         let enlaces = document.getElementsByClassName('enlaces');
-        let artistas2 = document.getElementsByClassName('artistas');
+        let fotos = [];
+        fotos.push(document.getElementById('img1'));
+        fotos.push(document.getElementById('img2'));
+        fotos.push(document.getElementById('img3'));
+        fotos.push(document.getElementById('img4'));
+        let artistas2 = fotos;
         this.Megustas_Status(data._id);
         let iconos = document.getElementsByClassName('flechas');
         let contador = 0;
@@ -56,7 +62,7 @@ export class VistaFestivalComponent implements AfterViewInit {
 
         } else {
 
-          for (let i = save; i < enlaces.length; i++) {
+          for (let i = 0; i < enlaces.length; i++) {
             
             if (i < artistas.length) {
 
@@ -69,11 +75,12 @@ export class VistaFestivalComponent implements AfterViewInit {
                 }
                 return "error"
               }).then(data => {
-                enlaces[i].setAttribute('name',data._id);
-                (artistas2[i] as HTMLImageElement).src = data.foto;
-                enlaces[i].setAttribute('href','vista-artista');
-                
-
+                enlaces[contador].setAttribute('name',data._id);
+                (artistas2[contador] as HTMLImageElement).src = data.foto;
+                enlaces[contador].setAttribute('href','vista-artista');
+                ya_mostrados.push(artistas[i]);
+                contador++;
+              
               })
                 .catch(error => {
                   console.error("Error getting fest data:", error);
@@ -87,7 +94,7 @@ export class VistaFestivalComponent implements AfterViewInit {
             contador++;
 
             if (contador == 4) {
-              save = i+1;
+              save = i;
               contador = 0;
               break;
             };
@@ -105,9 +112,29 @@ export class VistaFestivalComponent implements AfterViewInit {
 
           der.addEventListener('click',function next() {
 
-            for (let i = save; contador < enlaces.length && save<artistas.length; i++) {
+            let contador2 = 0;
+           let img1 = document.getElementById('img1');
+           let enl1 = document.getElementById('enl1');
+           let enl2 = document.getElementById('enl2');
+           let enl3 = document.getElementById('enl3');
+           let enl4 = document.getElementById('enl4');
+           let img2 = document.getElementById('img2');
+           let img3 = document.getElementById('img3');
+           let img4 = document.getElementById('img4');
+           if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4){
+            (img1 as HTMLImageElement).src='';
+            (img2 as HTMLImageElement).src='';
+            (img3 as HTMLImageElement).src='';
+            (img4 as HTMLImageElement).src='';
+            enl1.setAttribute('href','');
+            enl2.setAttribute('href','');
+            enl3.setAttribute('href','');
+            enl4.setAttribute('href','');
+           }
+            
+            
+            for (let i = 0; i < artistas.length && contador2 <4; i++) {
               if (i < artistas.length) {
-  
                 const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
   
                 const response = fetch(URL
@@ -117,30 +144,37 @@ export class VistaFestivalComponent implements AfterViewInit {
                   }
                   return "error"
                 }).then(data => {
-                  console.log(data.nombre);
-                  enlaces[contador].setAttribute('name',data._id);
-                  (artistas2[contador] as HTMLImageElement).src = data.foto; // ¿Por qué pilla una foto distinta?
-                  enlaces[contador].setAttribute('href','vista-artista');
-  
+                
+                  let verify = ya_mostrados.indexOf(artistas[i]);
+
+                  if (verify<0){
+                    console.log('Hola')
+                    const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
+
+                    const response = fetch(URL
+                      ).then(response => {
+                        if (response.status === 200) {
+                          return response.json();
+                        }
+                        return "error"
+                      }).then(data => {
+                        enlaces[contador2].setAttribute('name',data._id);
+                        (artistas2[contador2] as HTMLImageElement).src = data.foto;
+                        enlaces[contador2].setAttribute('href','vista-artista');
+                        ya_mostrados.push(artistas[i]);
+                        contador2++;
+                        save=i;
+                  })
+                  .catch(error => {
+                    console.error("Error getting fest data:", error);
+                  });
+                  }
                 })
                   .catch(error => {
                     console.error("Error getting fest data:", error);
                   });
   
-              } else {
-  
-                enlaces[contador].innerHTML = "";
-  
-              }
-  
-              contador++;
-  
-              if (contador == 4) {
-                contador = 0;
-                save = i+1;
-                break;
-              };
-  
+                }
             }
 
           }
