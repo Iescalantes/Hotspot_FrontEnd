@@ -122,14 +122,14 @@ export class VistaFestivalComponent implements AfterViewInit {
            let img3 = document.getElementById('img3');
            let img4 = document.getElementById('img4');
            if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4){
-            (img1 as HTMLImageElement).src='';
-            (img2 as HTMLImageElement).src='';
-            (img3 as HTMLImageElement).src='';
-            (img4 as HTMLImageElement).src='';
-            enl1.setAttribute('href','');
-            enl2.setAttribute('href','');
-            enl3.setAttribute('href','');
-            enl4.setAttribute('href','');
+            (img1 as HTMLImageElement).style.opacity='0';
+            (img2 as HTMLImageElement).style.opacity='0';
+            (img3 as HTMLImageElement).style.opacity='0';
+            (img4 as HTMLImageElement).style.opacity='0';
+            enl1.style.pointerEvents= 'none';
+            enl2.style.pointerEvents= 'none';
+            enl3.style.pointerEvents= 'none';
+            enl4.style.pointerEvents= 'none';
            }
             
             
@@ -148,7 +148,7 @@ export class VistaFestivalComponent implements AfterViewInit {
                   let verify = ya_mostrados.indexOf(artistas[i]);
 
                   if (verify<0){
-                    console.log('Hola')
+                    
                     const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
 
                     const response = fetch(URL
@@ -158,8 +158,10 @@ export class VistaFestivalComponent implements AfterViewInit {
                         }
                         return "error"
                       }).then(data => {
+                        (enlaces[contador2] as HTMLElement).style.pointerEvents = 'auto';
                         enlaces[contador2].setAttribute('name',data._id);
                         (artistas2[contador2] as HTMLImageElement).src = data.foto;
+                        (artistas2[contador2] as HTMLImageElement).style.opacity = '1';
                         enlaces[contador2].setAttribute('href','vista-artista');
                         ya_mostrados.push(artistas[i]);
                         contador2++;

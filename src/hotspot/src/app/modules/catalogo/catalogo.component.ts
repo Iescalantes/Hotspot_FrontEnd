@@ -90,11 +90,12 @@ export class CatalogoComponent implements AfterViewInit {
       return "error"
     }).then(data => {
 
-
-      for (let i = 0; i < 4; i++) {
+      let contador = 0;
+      for (let i = 0; i < data.length && contador<4; i++) {
         const element = data[i];
-        if (element.confirmado == true && element.esnovedad == true) {
-
+        
+        if (element.confirmado && element.esnovedad) {
+          console.log(i);  
           let lista_novedades = document.getElementById('lista_novedades');
 
           let tarjeta = document.createElement('div');
@@ -126,7 +127,8 @@ export class CatalogoComponent implements AfterViewInit {
             tarjeta.appendChild(title);
             enlace.appendChild(tarjeta);
             lista_novedades.appendChild(enlace);
-          }
+            }
+            contador++;
         }
       }
 

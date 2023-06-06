@@ -125,14 +125,14 @@ export class VistaArtistaComponent implements AfterViewInit {
            let img3 = document.getElementById('img3');
            let img4 = document.getElementById('img4');
            if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4){
-            (img1 as HTMLImageElement).src='';
-            (img2 as HTMLImageElement).src='';
-            (img3 as HTMLImageElement).src='';
-            (img4 as HTMLImageElement).src='';
-            enl1.setAttribute('href','');
-            enl2.setAttribute('href','');
-            enl3.setAttribute('href','');
-            enl4.setAttribute('href','');
+            (img1 as HTMLImageElement).style.opacity='0';
+            (img2 as HTMLImageElement).style.opacity='0';
+            (img3 as HTMLImageElement).style.opacity='0';
+            (img4 as HTMLImageElement).style.opacity='0';
+            enl1.style.pointerEvents= 'none';
+            enl2.style.pointerEvents= 'none';
+            enl3.style.pointerEvents= 'none';
+            enl4.style.pointerEvents= 'none';
            }
 
            
@@ -162,8 +162,11 @@ export class VistaArtistaComponent implements AfterViewInit {
                 }
                 return "error"
               }).then(data => {
+                
+                (festivales[contador2] as HTMLElement).style.pointerEvents = 'auto';
                 festivales[contador2].setAttribute('name', data._id);
                 (festivales2[contador2] as HTMLImageElement).src = data.foto;
+                (festivales2[contador2] as HTMLImageElement).style.opacity = '1';
                 festivales[contador2].setAttribute('href', 'vista-festival');
                 ya_mostrados.push(festis[i]);
                 contador2++;
