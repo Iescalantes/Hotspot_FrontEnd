@@ -18,11 +18,7 @@ export class MiespacioComponent implements AfterViewInit {
   async chargeInfoFestis() {
     let container = document.getElementById('festivales');
 
-
-
-
     const URL = "https://hotspotbackend-production.up.railway.app/users/email/"+localStorage.getItem('email');
-
 
     const response = fetch(URL
     ).then(response => {
@@ -49,7 +45,7 @@ export class MiespacioComponent implements AfterViewInit {
         }).then(data => {
 
           let a = document.createElement('a');
-          a.setAttribute('name',id);
+          a.setAttribute('name',data._id);
           a.href = 'vista-festival';
           a.className = 'enlaces'
           a.style.marginLeft = '1%'
@@ -79,12 +75,11 @@ export class MiespacioComponent implements AfterViewInit {
           card.appendChild(div);
           a.appendChild(card);
           container?.appendChild(a);
+          this.GuardianFestis();
         }).catch(error => {
           console.error("Error getting fest data:", error);
         });
-
       }
-      this.GuardianFestis();
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
@@ -122,7 +117,7 @@ export class MiespacioComponent implements AfterViewInit {
         }).then(data => {
 
         let a = document.createElement('a');
-        a.setAttribute('name',id);
+        a.setAttribute('name',data._id);
         a.href = 'vista-artista';
         a.className = 'enlaces'
         a.style.marginLeft = '1%'
@@ -153,11 +148,11 @@ export class MiespacioComponent implements AfterViewInit {
         card.appendChild(div);
         a.appendChild(card);
         container?.appendChild(a);
+        this.GuardianArtists();
       }).catch(error => {
         console.error("Error getting fest data:", error);
       });
       }
-      this.GuardianArtists();
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
