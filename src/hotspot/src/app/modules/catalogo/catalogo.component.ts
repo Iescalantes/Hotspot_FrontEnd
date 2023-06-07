@@ -95,7 +95,7 @@ export class CatalogoComponent implements AfterViewInit {
         const element = data[i];
         
         if (element.confirmado && element.esnovedad) {
-          console.log(i);  
+           
           let lista_novedades = document.getElementById('lista_novedades');
 
           let tarjeta = document.createElement('div');

@@ -69,7 +69,6 @@ export class HomeComponent implements AfterViewInit {
         enlace2.href = 'gestion-artistas';
 
         let img2 = document.createElement('img');
-        //Cambiar 'ruta' por la imagen de la guindilla sin color.
         img2.src = 'assets/images/GuindillaError.png';
         img2.className = 'card-img';
         img2.style.height = '200px';

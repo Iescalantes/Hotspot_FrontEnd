@@ -171,7 +171,6 @@ export class EditingInfoComponent implements AfterViewInit {
       div.id = 'container';
 
       let img = document.createElement('img');
-      //Cambiar 'ruta' por la imagen de la guindilla sin color.
       img.src= 'assets/images/GuindillaError.png';
       let p = document.createElement('p');
       let h2 = document.createElement('h1');
