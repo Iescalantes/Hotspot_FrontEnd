@@ -1,14 +1,14 @@
-*{
+* {
     color: white;
     font-size: large;
 }
 
-body{
+body {
     height: 600px !important;
     margin-top: 5% !important;
 }
 
-#tarjeta{
+#tarjeta {
     background-color: #1E1E1E;
     margin: auto;
     border-radius: 5px;
@@ -16,36 +16,34 @@ body{
     height: 550px;
 }
 
-#divpadre{
+#divpadre {
     width: 90%;
     margin: auto;
 }
 
-#info{
+#info {
     display: flex;
 }
 
-#derecha{
+#derecha {
     margin-left: 10%;
 }
 
-#nombreymg{
+#nombreymg {
     display: flex;
 }
 
-#estado_megusta{
+#estado_megusta {
     margin-left: 5%;
 }
 
-.img,.artistas{
-     border-radius: 50%;
-      width: 6rem;
-     height: 6rem;
+.img,
+.artistas {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
 }
 
-#artista_lista{
+#artista_lista {
     text-align: center;
 }
-
-
-

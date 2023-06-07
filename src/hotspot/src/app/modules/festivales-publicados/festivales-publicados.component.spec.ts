@@ -8,9 +8,9 @@ describe('FestivalesPublicadosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FestivalesPublicadosComponent ]
+      declarations: [FestivalesPublicadosComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FestivalesPublicadosComponent);
     component = fixture.componentInstance;

@@ -1,65 +1,65 @@
 <body>
     <div id="tarjeta" class="col-10 container">
-        <form id="formulario" class="col-12" (ngSubmit) = "registerEmpresa()" #registerform = "ngForm">
+        <form id="formulario" class="col-12" (ngSubmit)="registerEmpresa()" #registerform="ngForm">
             <!-- {{user|json}}-->
             <div id="divpadre">
-            <div id="izquierda" class="col-5 col-sm">
-                <label for="email">Correo electrónico:</label>
-                <br>
-                <input type="email" id="email" name = "email" [(ngModel)]="empresa.email">
-                <div *ngIf="!checkEmail()" class="alert alert-danger col-8">
-                    El email es obligatorio.
+                <div id="izquierda" class="col-5 col-sm">
+                    <label for="email">Correo electrónico:</label>
+                    <br>
+                    <input type="email" id="email" name="email" [(ngModel)]="empresa.email">
+                    <div *ngIf="!checkEmail()" class="alert alert-danger col-8">
+                        El email es obligatorio.
+                    </div>
+                    <br>
+                    <label for="username">Empresa:</label>
+                    <br>
+                    <input type="text" id="username" name="nombre" [(ngModel)]="empresa.nombre">
+                    <div *ngIf="!checkName()" class="alert alert-danger col-8">
+                        El nombre debe tener almenos 2 carácteres.
+                    </div>
+                    <br>
+                    <label for="pswd">Contraseña:</label>
+                    <br>
+                    <input type="password" id="pswd" name="password" [(ngModel)]="empresa.password">
+                    <br>
+                    <label for="pswd2">Repita la contraseña:</label>
+                    <br>
+                    <input type="password" id="pswd2" name="confirmPassword" [(ngModel)]="empresa.confirmPassword">
+                    <br>
+                    <br>
+                    <div *ngIf="!matchPasswords()" class="alert alert-danger">
+                        Las contraseñas son distintas
+                    </div>
+                    <label for="tlf">Teléfono:</label>
+                    <br>
+                    <input type="tel" id="tlf" name="telefono" [(ngModel)]="empresa.tlf">
+                    <div *ngIf="!checkTel()" class="alert alert-danger col-8">
+                        Respete el formato de los números de teléfono.
+                    </div>
+                    <br>
+                    <label for="desc">Descripción:</label>
+                    <br>
+                    <textarea id="desc" name="descripcion" [(ngModel)]="empresa.desc"></textarea>
+                    <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
+                        Introduzca una breve descripción de almenos 10 carácteres.
+                    </div>
                 </div>
-                <br>
-                <label for="username">Empresa:</label>
-                <br>
-                <input type="text" id="username" name = "nombre" [(ngModel)]="empresa.nombre">
-                <div *ngIf="!checkName()" class="alert alert-danger col-8">
-                    El nombre debe tener almenos 2 carácteres.
-                </div>
-                <br>
-                <label for="pswd">Contraseña:</label>
-                <br>
-                <input type="password" id="pswd" name = "password" [(ngModel)]="empresa.password">
-                <br>
-                <label for="pswd2">Repita la contraseña:</label>
-                <br>
-                <input type="password" id="pswd2" name = "confirmPassword" [(ngModel)]="empresa.confirmPassword">
-                <br>
-                <br>
-                <div *ngIf="!matchPasswords()" class="alert alert-danger">
-                    Las contraseñas son distintas
-                </div>
-                <label for="tlf">Teléfono:</label>
-                <br>
-                <input type="tel" id="tlf" name = "telefono" [(ngModel)]="empresa.tlf">
-                <div *ngIf="!checkTel()" class="alert alert-danger col-8">
-                    Respete el formato de los números de teléfono.
-                </div>
-                <br>
-                <label for="desc">Descripción:</label>
-                <br>
-                <textarea id="desc" name = "descripcion" [(ngModel)]="empresa.desc"></textarea>
-                <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
-                    Introduzca una breve descripción de almenos 10 carácteres.
+                <div id="derecha" class="col-5">
+                    <label for="img">Pegar el enlace de la foto:</label>
+                    <br>
+                    <input type="text" id="img" name="foto" [(ngModel)]="empresa.foto">
+                    <br>
+                    <label for="code">Exponer código:</label>
+                    <br>
+                    <input type="text" id="code" name="codigo" [(ngModel)]="empresa.code">
                 </div>
             </div>
-            <div id="derecha" class="col-5">
-                <label for="img">Pegar el enlace de la foto:</label>
+            <div id="final">
                 <br>
-                <input type="text" id="img" name = "foto" [(ngModel)]="empresa.foto">
+                <a href="register">¿Quieres registrarte como usuario?</a>
                 <br>
-                <label for="code">Exponer código:</label>
-                <br>
-                <input type="text" id="code" name = "codigo" [(ngModel)]="empresa.code">
+                <button type="submit">Acceder</button>
             </div>
-        </div>
-        <div id="final">
-            <br>
-            <a href="register">¿Quieres registrarte como usuario?</a>
-            <br>
-            <button type="submit">Acceder</button>
-        </div>
         </form>
     </div>
 </body>

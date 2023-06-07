@@ -8,9 +8,9 @@ describe('VistaFestivalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VistaFestivalComponent ]
+      declarations: [VistaFestivalComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(VistaFestivalComponent);
     component = fixture.componentInstance;

@@ -1,54 +1,57 @@
 <body>
     <div id="tarjeta" class="col-10">
-        <form id="formulario" class="col-12" (ngSubmit) = "registerFestival()" #registerform = "ngForm">
+        <form id="formulario" class="col-12" (ngSubmit)="registerFestival()" #registerform="ngForm">
             <!-- {{user|json}}-->
             <div id="divpadre" class="d-flex flex-column">
-                <legend><h3> Ingresa los datos de tu festival:</h3></legend>
-                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <legend>
+                    <h3> Ingresa los datos de tu festival:</h3>
+                </legend>
+                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar" style="width: 1%"></div>
-                  </div>
+                </div>
                 <hr>
                 <label for="username">Nombre:</label>
                 <br>
-                <input type="text" id="username" name = "nombre" [(ngModel)]="festival.nombre">
+                <input type="text" id="username" name="nombre" [(ngModel)]="festival.nombre">
                 <div *ngIf="!checkName()" class="alert alert-danger col-8">
                     El nombre debe tener más de 2 caracteres.
                 </div>
                 <br>
                 <label for="local">Localización:</label>
                 <br>
-                <input type="text" id="local" name = "localizacion" [(ngModel)]="festival.localizacion">
+                <input type="text" id="local" name="localizacion" [(ngModel)]="festival.localizacion">
                 <div *ngIf="!checkLocal()" class="alert alert-danger col-8">
                     La localización no puede estar vacía.
                 </div>
                 <br>
                 <label for="local">Descripción:</label>
                 <br>
-                <textarea id="desc" name = "descripcion" [(ngModel)]="festival.descripcion"></textarea>
+                <textarea id="desc" name="descripcion" [(ngModel)]="festival.descripcion"></textarea>
                 <div *ngIf="!checkDesc()" class="alert alert-danger col-8">
                     Proporcione una breve descripción de 15 caracteres.
                 </div>
                 <br>
                 <label for="edad">Obligatorio +18:</label>
                 <br>
-                <input type="checkbox" id="edad" name = "mayoriaedad" [(ngModel)]="festival.mayoriaedad">
+                <input type="checkbox" id="edad" name="mayoriaedad" [(ngModel)]="festival.mayoriaedad">
                 <br>
                 <label for="date">Fecha:</label>
                 <br>
-                <input type="date" id="date" name = "fecha" [(ngModel)]="festival.fecha">
+                <input type="date" id="date" name="fecha" [(ngModel)]="festival.fecha">
                 <br>
                 <label for="img">Subir foto:</label>
                 <br>
-                <input type="text" id="img" name = "foto" [(ngModel)]="festival.foto">
+                <input type="text" id="img" name="foto" [(ngModel)]="festival.foto">
                 <div *ngIf="!checkPic()" class="alert alert-danger col-8">
                     Debe definir una foto.
                 </div>
                 <br>
-        </div>
-        <div id="final">
-            <br>
-            <button type="submit">Seguir</button>
-        </div>
+            </div>
+            <div id="final">
+                <br>
+                <button type="submit">Seguir</button>
+            </div>
         </form>
     </div>
 </body>

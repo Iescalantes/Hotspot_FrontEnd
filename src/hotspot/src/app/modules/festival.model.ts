@@ -4,7 +4,7 @@
  */
 
 export class Festival {
-    constructor (
+    constructor(
         public Id_empresa: string,
         public nombre: string,
         public fecha: Date,
@@ -17,5 +17,5 @@ export class Festival {
         public confirmado: boolean,
         public megustas: Number,
         public foto: string,
-    ) {  }
+    ) { }
 }

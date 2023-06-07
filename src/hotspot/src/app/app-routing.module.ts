@@ -41,7 +41,7 @@ const routes: Routes = [
       { path: 'ajustes', component: AjustesComponent },
       { path: 'gestion-lista-peticiones', component: GestionListaPeticionesComponent },
       { path: 'gestion-artistas', component: GestionArtistasComponent },
-      { path: 'festivales-publicados', component: FestivalesPublicadosComponent }, 
+      { path: 'festivales-publicados', component: FestivalesPublicadosComponent },
       { path: 'catalogoartistas', component: CatalogoartistasComponent },
       { path: 'editing-info', component: EditingInfoComponent },
       { path: 'login2', component: Login2Component },

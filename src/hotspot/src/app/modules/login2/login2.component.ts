@@ -11,9 +11,12 @@ export class Login2Component {
   empresa: Empresa = this.newEmpresa();
   array: any = [];
   newEmpresa() {
-    return new Empresa("", "", "", "", "", "", 0,this.array);
+    return new Empresa("", "", "", "", "", "", 0, this.array);
   }
 
+  /**
+   * Función para comprar que la empresa existe.
+   */
   async comprobarEmpresa() {
     let emailAComprobar = this.empresa.email;
 
@@ -24,12 +27,12 @@ export class Login2Component {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({password: this.empresa.password,email: this.empresa.email})
+        body: JSON.stringify({ password: this.empresa.password, email: this.empresa.email })
       }).then(response => {
         if (response.status === 200) {
           localStorage.setItem("loggedUser", "y");
           localStorage.setItem("email", this.empresa.email);
-          localStorage.setItem('loggedEmpresa','y');
+          localStorage.setItem('loggedEmpresa', 'y');
           window.location.href = "";
         } else {
           console.log("Error")

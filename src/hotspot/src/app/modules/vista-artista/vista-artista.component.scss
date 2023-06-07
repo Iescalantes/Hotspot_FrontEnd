@@ -1,14 +1,14 @@
-*{
+* {
     color: white;
     font-size: large;
 }
 
-body{
+body {
     height: 600px !important;
     margin-top: 5% !important;
 }
 
-#tarjeta{
+#tarjeta {
     background-color: #1E1E1E;
     margin: auto;
     border-radius: 5px;
@@ -16,29 +16,29 @@ body{
     height: 575px;
 }
 
-#divpadre{
+#divpadre {
     width: 90%;
     margin: auto;
 }
 
-#info{
+#info {
     display: flex;
 }
 
-#derecha{
+#derecha {
     margin-left: 10%;
 }
 
-#izquierda{
+#izquierda {
     text-align: center;
 }
 
-.festival{
-        border-radius: 50%;
-         width: 6rem;
-        height: 6rem;
+.festival {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
 }
 
-#festival_lista{
+#festival_lista {
     text-align: center;
 }

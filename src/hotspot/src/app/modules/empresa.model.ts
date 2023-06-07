@@ -4,7 +4,7 @@
  */
 
 export class Empresa {
-    constructor (
+    constructor(
         public nombre: string,
         public password: string,
         public confirmPassword: string,
@@ -13,5 +13,5 @@ export class Empresa {
         public desc: string,
         public tlf: number,
         public code: string
-    ) {  }
+    ) { }
 }

@@ -8,13 +8,13 @@ import { AfterViewInit, Component } from '@angular/core';
 export class NavigationBusinessComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
-    document.getElementById('icon1')?.addEventListener('click',this.cerrarSesion);
+    document.getElementById('icon1')?.addEventListener('click', this.cerrarSesion);
   }
 
 
-  
-  cerrarSesion(){
-    
+
+  cerrarSesion() {
+
     localStorage.clear();
     localStorage.setItem("loggedUser", 'n');
 

@@ -11,6 +11,9 @@ export class VistaArtistaComponent implements AfterViewInit {
     this.chargeInfo();
   }
 
+  /**
+   * Función que carga la información del artista en la vista.
+   */
   async chargeInfo() {
     let ya_mostrados: String[] = [];
     let id_artista = localStorage.getItem('IDArtista');
@@ -115,31 +118,31 @@ export class VistaArtistaComponent implements AfterViewInit {
 
           der.addEventListener('click', function next() {
 
-           let contador2 = 0;
-           let img1 = document.getElementById('img1');
-           let enl1 = document.getElementById('enl1');
-           let enl2 = document.getElementById('enl2');
-           let enl3 = document.getElementById('enl3');
-           let enl4 = document.getElementById('enl4');
-           let img2 = document.getElementById('img2');
-           let img3 = document.getElementById('img3');
-           let img4 = document.getElementById('img4');
-           if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4){
-            (img1 as HTMLImageElement).style.opacity='0';
-            (img2 as HTMLImageElement).style.opacity='0';
-            (img3 as HTMLImageElement).style.opacity='0';
-            (img4 as HTMLImageElement).style.opacity='0';
-            enl1.style.pointerEvents= 'none';
-            enl2.style.pointerEvents= 'none';
-            enl3.style.pointerEvents= 'none';
-            enl4.style.pointerEvents= 'none';
-           }
+            let contador2 = 0;
+            let img1 = document.getElementById('img1');
+            let enl1 = document.getElementById('enl1');
+            let enl2 = document.getElementById('enl2');
+            let enl3 = document.getElementById('enl3');
+            let enl4 = document.getElementById('enl4');
+            let img2 = document.getElementById('img2');
+            let img3 = document.getElementById('img3');
+            let img4 = document.getElementById('img4');
+            if (img1 && img2 && img3 && img4 && enl1 && enl2 && enl3 && enl4) {
+              (img1 as HTMLImageElement).style.opacity = '0';
+              (img2 as HTMLImageElement).style.opacity = '0';
+              (img3 as HTMLImageElement).style.opacity = '0';
+              (img4 as HTMLImageElement).style.opacity = '0';
+              enl1.style.pointerEvents = 'none';
+              enl2.style.pointerEvents = 'none';
+              enl3.style.pointerEvents = 'none';
+              enl4.style.pointerEvents = 'none';
+            }
 
-           
-           for (let i = 0; i < festis.length && contador2<4; i++) {
 
-            
-            const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
+            for (let i = 0; i < festis.length && contador2 < 4; i++) {
+
+
+              const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
 
               const response = fetch(URL
               ).then(async response => {
@@ -149,39 +152,39 @@ export class VistaArtistaComponent implements AfterViewInit {
                 return "error"
               }).then(data => {
 
-              let verify = ya_mostrados.indexOf(festis[i]);
+                let verify = ya_mostrados.indexOf(festis[i]);
 
-            if(verify<0){
-              
-              const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
+                if (verify < 0) {
 
-              const response = fetch(URL
-              ).then(response => {
-                if (response.status === 200) {
-                  return response.json();
+                  const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + festis[i];
+
+                  const response = fetch(URL
+                  ).then(response => {
+                    if (response.status === 200) {
+                      return response.json();
+                    }
+                    return "error"
+                  }).then(data => {
+
+                    (festivales[contador2] as HTMLElement).style.pointerEvents = 'auto';
+                    festivales[contador2].setAttribute('name', data._id);
+                    (festivales2[contador2] as HTMLImageElement).src = data.foto;
+                    (festivales2[contador2] as HTMLImageElement).style.opacity = '1';
+                    festivales[contador2].setAttribute('href', 'vista-festival');
+                    ya_mostrados.push(festis[i]);
+                    contador2++;
+                    save = i;
+                  })
+                    .catch(error => {
+                      console.error("Error getting fest data:", error);
+                    });
                 }
-                return "error"
-              }).then(data => {
-                
-                (festivales[contador2] as HTMLElement).style.pointerEvents = 'auto';
-                festivales[contador2].setAttribute('name', data._id);
-                (festivales2[contador2] as HTMLImageElement).src = data.foto;
-                (festivales2[contador2] as HTMLImageElement).style.opacity = '1';
-                festivales[contador2].setAttribute('href', 'vista-festival');
-                ya_mostrados.push(festis[i]);
-                contador2++;
-                save=i;
-          })
-          .catch(error => {
-            console.error("Error getting fest data:", error);
-          });
-            }
-          })
-          .catch(error => {
-            console.error("Error getting fest data:", error);
-          });
+              })
+                .catch(error => {
+                  console.error("Error getting fest data:", error);
+                });
 
-           }
+            }
 
 
           }
@@ -198,6 +201,9 @@ export class VistaArtistaComponent implements AfterViewInit {
 
   };
 
+  /**
+   * Función que guarda el ID del festival en el localStorage.
+   */
   async Guardian() {
     let festivales = document.getElementsByClassName('enlaces');
 
@@ -211,6 +217,10 @@ export class VistaArtistaComponent implements AfterViewInit {
     }
   };
 
+  /**
+   * Función que sirve para comprobar si el artista se encuentra entre los favoritos del usuario.
+   * @param id_artista 
+   */
   async Megustas_Status(id_artista: String) {
     if (localStorage.getItem('loggedUser') == 'y') {
       let estado = document.getElementById('estado_megusta');
@@ -242,7 +252,6 @@ export class VistaArtistaComponent implements AfterViewInit {
           estado.className = "bi bi-heart";
           estado.addEventListener("click", async function (evt) {
             (evt.currentTarget as HTMLElement).className = "bi bi-heart-fill";
-            // Aquí va el put o update pa actualizar el bicho
             let artists = data[0].favArts;
             artists.push(localStorage.getItem('IDArtista'));
 
@@ -299,7 +308,9 @@ export class VistaArtistaComponent implements AfterViewInit {
   }
 
 
-
+  /**
+   * Función que elimina el artista de la base de datos.
+   */
   async deleteArt() {
     const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + localStorage.getItem('IDArtista');
 

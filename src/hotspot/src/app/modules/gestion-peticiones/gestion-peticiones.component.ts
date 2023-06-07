@@ -1,22 +1,22 @@
-import { AfterViewInit,Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-gestion-peticiones',
   templateUrl: './gestion-peticiones.component.html',
   styleUrls: ['./gestion-peticiones.component.scss']
 })
-export class GestionPeticionesComponent implements AfterViewInit{
+export class GestionPeticionesComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.RolCheckAdmin();
     this.chargeInfo();
-    setTimeout(this.Guardian,100);
-    setTimeout(this.alta,150);
+    setTimeout(this.Guardian, 100);
+    setTimeout(this.alta, 150);
   }
 
-
-
-
+  /**
+   * Función para cargar toda la información en la vista acerca de la petición.
+   */
   async chargeInfo() {
     let id_festival = localStorage.getItem('IDFestival');
     const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + id_festival;
@@ -64,7 +64,7 @@ export class GestionPeticionesComponent implements AfterViewInit{
           let save = 0;
 
           for (let i = save; i < enlaces.length; i++) {
-            
+
             if (i < artistas.length) {
 
               const URL = "https://hotspotbackend-production.up.railway.app/artistas/" + artistas[i];
@@ -76,9 +76,9 @@ export class GestionPeticionesComponent implements AfterViewInit{
                 }
                 return "error"
               }).then(data => {
-                enlaces[i].setAttribute('name',data._id);
+                enlaces[i].setAttribute('name', data._id);
                 (artistas2[i] as HTMLImageElement).src = data.foto;
-                enlaces[i].setAttribute('href','vista-artista');
+                enlaces[i].setAttribute('href', 'vista-artista');
 
               })
                 .catch(error => {
@@ -104,34 +104,39 @@ export class GestionPeticionesComponent implements AfterViewInit{
       }
 
 
-      
+
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
       });
   };
 
-
+  /**
+   * Función que almacena en localStorage el ID del artista.
+   */
   async Guardian() {
     let enlaces = document.getElementsByClassName('enlaces');
-  
-      for (let i = 0; i < enlaces.length; i++) {
-        let element = enlaces[i]
-  
-        element?.addEventListener('click', function(evt){
-          let nombre = (evt.currentTarget as HTMLElement).getAttribute("name") || "No se ha podido cargar";
-          localStorage.setItem('IDArtista', nombre);
-        })
-      }
+
+    for (let i = 0; i < enlaces.length; i++) {
+      let element = enlaces[i]
+
+      element?.addEventListener('click', function (evt) {
+        let nombre = (evt.currentTarget as HTMLElement).getAttribute("name") || "No se ha podido cargar";
+        localStorage.setItem('IDArtista', nombre);
+      })
+    }
   };
 
-  async alta(){
-  
-let check = document.getElementById('aceptar');
-let cross = document.getElementById('denegar');
+  /**
+   * Función que cambia el estado de confirmado a true o elimina el objeto de la bbdd
+   */
+  async alta() {
+
+    let check = document.getElementById('aceptar');
+    let cross = document.getElementById('denegar');
 
 
-    check?.addEventListener('click',function updatear() {
+    check?.addEventListener('click', function updatear() {
 
       const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('IDFestival');
 
@@ -150,7 +155,7 @@ let cross = document.getElementById('denegar');
 
 
 
-    cross?.addEventListener('click',function deletear() {
+    cross?.addEventListener('click', function deletear() {
       const URL = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('IDFestival');
 
       const response = fetch(URL, {
@@ -165,48 +170,49 @@ let cross = document.getElementById('denegar');
   };
 
 
-
-  async RolCheckAdmin(){
+  /**
+     * Función que bloquea el acceso a quien no debe acceder a esta vista.
+     */
+  async RolCheckAdmin() {
     let rol = localStorage.getItem('tipo');
     let logged = localStorage.getItem('loggedUser');
 
-    
-    if (logged != 'y' || rol != 'admin' || rol == null){
-      
+
+    if (logged != 'y' || rol != 'admin' || rol == null) {
+
       let body = document.getElementsByTagName('body');
-      if (body){
-      body[0].innerHTML = '';
-      body[0].style.width='80%'; 
-      body[0].style.height='80%'; 
-      body[0].style.margin = 'auto';
-      body[0].style.marginTop = '5%';
-
-      
-      
-      let div = document.createElement('div');
-      div.style.display = 'flex';
-      div.id = 'container';
-
-      let img = document.createElement('img');
-      //Cambiar 'ruta' por la imagen de la guindilla sin color.
-      img.src= 'assets/images/GuindillaError.png';
-      let p = document.createElement('p');
-      let h2 = document.createElement('h1');
-      h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';
-      h2.style.color = 'white'
-      let h3 = document.createElement('h3');
-      h3.style.color = 'white'
-      h3.innerHTML = 'Serás redirigid@ a la página de inicio.';
-
-      p.appendChild(h2);
-      p.appendChild(h3);
-      div.appendChild(img);
-      div.appendChild(p);
-      body[0].appendChild(div);
+      if (body) {
+        body[0].innerHTML = '';
+        body[0].style.width = '80%';
+        body[0].style.height = '80%';
+        body[0].style.margin = 'auto';
+        body[0].style.marginTop = '5%';
 
 
-      setTimeout(function temporizador(){window.location.href = ''},3000);
-    }
+
+        let div = document.createElement('div');
+        div.style.display = 'flex';
+        div.id = 'container';
+
+        let img = document.createElement('img');
+        img.src = 'assets/images/GuindillaError.png';
+        let p = document.createElement('p');
+        let h2 = document.createElement('h1');
+        h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';
+        h2.style.color = 'white'
+        let h3 = document.createElement('h3');
+        h3.style.color = 'white'
+        h3.innerHTML = 'Serás redirigid@ a la página de inicio.';
+
+        p.appendChild(h2);
+        p.appendChild(h3);
+        div.appendChild(img);
+        div.appendChild(p);
+        body[0].appendChild(div);
+
+
+        setTimeout(function temporizador() { window.location.href = '' }, 3000);
+      }
 
     };
   };

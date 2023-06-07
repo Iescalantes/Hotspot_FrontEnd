@@ -1,13 +1,14 @@
-*{
+* {
     color: white;
     font-size: large;
 }
 
-body{
+body {
     min-height: 700px !important;
     margin-top: 5% !important;
 }
-#tarjeta{
+
+#tarjeta {
     background-color: #1E1E1E;
     margin: auto;
     border-radius: 5px;
@@ -16,42 +17,42 @@ body{
     min-height: 650px;
 }
 
-.alert{
+.alert {
     background-color: red;
     border: rgb(189, 0, 0) 2px solid;
-    
+
 }
 
-textarea{
+textarea {
     color: black;
 }
 
-label{
+label {
     text-align: left !important;
 }
 
-button{
+button {
     color: black;
 }
 
-#formulario{
+#formulario {
     width: 80%;
     margin: auto;
 }
 
-#divpadre{
+#divpadre {
     display: flex;
 }
 
-a{
+a {
     font-size: small;
 }
 
-input{
+input {
     color: black;
     width: 90%;
 }
 
-#final{
+#final {
     text-align: center;
 }

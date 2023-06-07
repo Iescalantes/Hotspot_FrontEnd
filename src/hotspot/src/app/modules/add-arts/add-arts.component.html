@@ -2,13 +2,16 @@
     <div id="tarjeta" class="col-10">
         <div id="divpadre" class="d-flex flex-column">
 
-            <legend><h3> Añade artistas a tu festival:</h3></legend>
-            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            <legend>
+                <h3> Añade artistas a tu festival:</h3>
+            </legend>
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100">
                 <div class="progress-bar" style="width: 50%"></div>
-              </div>
+            </div>
             <hr>
-            
-            <form id="formulario" class="col-12" (ngSubmit) = "registerArtista()" #registerform = "ngForm">   
+
+            <form id="formulario" class="col-12" (ngSubmit)="registerArtista()" #registerform="ngForm">
                 <label for="name">Introduzca el nombre real del artista:</label>
                 <input type="text" id="name" name="name" [(ngModel)]="artista.nombre">
                 <div *ngIf="!checkName()" class="alert alert-danger col-8">
@@ -21,7 +24,8 @@
                     El campo apodo no puede estar vacío.
                 </div>
                 <br>
-                <label for="gen">Introduzca los géneros de música que pertenezcan al artista separados por espacios:</label>
+                <label for="gen">Introduzca los géneros de música que pertenezcan al artista separados por
+                    espacios:</label>
                 <input type="text" id="gen" name="gen" [(ngModel)]="artista.generos">
                 <div *ngIf="!checkGen()" class="alert alert-danger col-8">
                     Introduzca al menos un género.

@@ -4,7 +4,7 @@
  */
 
 export class User {
-    constructor (
+    constructor(
         public nombre: string,
         public password: string,
         public confirmPassword: string,
@@ -12,5 +12,5 @@ export class User {
         public fechanacimiento: Date,
         public foto: string,
         public tipo: string
-    ) {  }
+    ) { }
 }

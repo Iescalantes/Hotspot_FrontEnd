@@ -8,9 +8,9 @@ describe('VistaArtistaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VistaArtistaComponent ]
+      declarations: [VistaArtistaComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(VistaArtistaComponent);
     component = fixture.componentInstance;

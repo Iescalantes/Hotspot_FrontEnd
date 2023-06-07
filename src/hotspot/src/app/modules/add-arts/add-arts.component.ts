@@ -19,35 +19,41 @@ export class AddArtsComponent implements AfterViewInit {
     return new Artista('', '', '', [], '', [], []);
   }
 
+  /**
+   * Funciones para validar la entrada de datos y usadas para los mensajes.
+   * @returns boolean
+   */
   checkName() {
-    return this.artista.nombre.length>0;
+    return this.artista.nombre.length > 0;
   }
 
   checkDesc() {
-    return this.artista.descripcion.length>15;
+    return this.artista.descripcion.length > 15;
   }
 
   checkApodo() {
-    return this.artista.apodo.length>0;
+    return this.artista.apodo.length > 0;
   }
 
   checkGen() {
-    return this.artista.generos.length>0;
+    return this.artista.generos.length > 0;
   }
 
   checkPic() {
-    return this.artista.foto.length>0;
+    return this.artista.foto.length > 0;
   }
 
-  confirmData(){
-    if (this.checkDesc() && this.checkApodo() && this.checkName() && this.checkGen() && this.checkPic()){
+  confirmData() {
+    if (this.checkDesc() && this.checkApodo() && this.checkName() && this.checkGen() && this.checkPic()) {
       return true;
-    }else{
+    } else {
       return false;
     };
   };
 
-  // AÑADIR festival a la empresa
+  /**
+   * AÑADIR festival a la empresa
+   */
   updateBusiness() {
     const URL = "https://hotspotbackend-production.up.railway.app/empresas/email/" + localStorage.getItem('email');
     const response = fetch(URL
@@ -80,59 +86,61 @@ export class AddArtsComponent implements AfterViewInit {
       });
   };
 
-  // REGISTRA ARTISTA Y LE DEFINE TAMBIEN EL FESTIVAL
-
+  /**
+   * REGISTRA artista y le añade el festival a su array.
+   */
   async registerArtista() {
 
-    if (this.confirmData()){
+    if (this.confirmData()) {
 
-    let nombre = this.artista.apodo;
+      let nombre = this.artista.apodo;
 
-    const URL = "https://hotspotbackend-production.up.railway.app/artistas/nombre/" + nombre;
+      const URL = "https://hotspotbackend-production.up.railway.app/artistas/nombre/" + nombre;
 
-    const response = await fetch(URL
-    ).then(response => {
-      if (response.status === 200) {
-        alert('Ese artista ya se encuentra en nuestra base de datos');
-      } else {
+      const response = await fetch(URL
+      ).then(response => {
+        if (response.status === 200) {
+          alert('Ese artista ya se encuentra en nuestra base de datos');
+        } else {
 
-        let generos = document.getElementById('gen')?.innerHTML.split(' ');
-        let tags = document.getElementById('tags')?.innerHTML.split(' ');
-        let array = [];
-        array.push(localStorage.getItem('prev'))
+          let generos = document.getElementById('gen')?.innerHTML.split(' ');
+          let tags = document.getElementById('tags')?.innerHTML.split(' ');
+          let array = [];
+          array.push(localStorage.getItem('prev'))
 
-        const URL = "https://hotspotbackend-production.up.railway.app/artistas";
-        const response = fetch(URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ foto: this.artista.foto, nombre: this.artista.nombre, apodo: this.artista.apodo, generos: generos, descripcion: this.artista.descripcion, tags: tags, festivales: array })
-        }).then(response => {
+          const URL = "https://hotspotbackend-production.up.railway.app/artistas";
+          const response = fetch(URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ foto: this.artista.foto, nombre: this.artista.nombre, apodo: this.artista.apodo, generos: generos, descripcion: this.artista.descripcion, tags: tags, festivales: array })
+          }).then(response => {
 
-          if (response.status === 200) {
-            this.guardarID();
-          }
-          return "error"
+            if (response.status === 200) {
+              this.guardarID();
+            }
+            return "error"
 
-        })
-          .catch(error => {
-            console.error("Error creando el artista:", error);
-          });
+          })
+            .catch(error => {
+              console.error("Error creando el artista:", error);
+            });
 
 
-      }
-      return "error"
-    }).catch(error => {
-      console.error("Error getting artist data:", error);
-    });
-  }else{
-    alert('Rellena todos los campos correctamente');
+        }
+        return "error"
+      }).catch(error => {
+        console.error("Error getting artist data:", error);
+      });
+    } else {
+      alert('Rellena todos los campos correctamente');
+    }
   }
-  }
 
-// GUARDA IDs de ARTISTAS en el FESTIVAL
-
+  /**
+   * Guarda los IDs de los artistas que se crean en el festival
+   */
   guardarID() {
     const URL = "https://hotspotbackend-production.up.railway.app/artistas";
 
@@ -153,7 +161,7 @@ export class AddArtsComponent implements AfterViewInit {
       }).then(data => {
 
         let array = data.artistas;
-        array.push(arts[arts.length - 1]._id); 
+        array.push(arts[arts.length - 1]._id);
 
         const URL3 = "https://hotspotbackend-production.up.railway.app/festivales/" + localStorage.getItem('prev');
         const response3 = fetch(URL3, {
@@ -180,46 +188,49 @@ export class AddArtsComponent implements AfterViewInit {
       });
   };
 
-  async RolCheckBusiness(){
+  /**
+   * Función para bloquear el acceso de otro tipo de usuarios.
+   */
+  async RolCheckBusiness() {
     let rol = localStorage.getItem('loggedEmpresa');
     let logged = localStorage.getItem('loggedUser');
 
-    
-    if (logged != 'y' || rol != 'y' || rol == null){
-      
+
+    if (logged != 'y' || rol != 'y' || rol == null) {
+
       let body = document.getElementsByTagName('body');
-      if (body){
-      body[0].innerHTML = '';
-      body[0].style.width='80%'; 
-      body[0].style.height='80%'; 
-      body[0].style.margin = 'auto';
-      body[0].style.marginTop = '5%';
-
-      
-      
-      let div = document.createElement('div');
-      div.style.display = 'flex';
-      div.id = 'container';
-
-      let img = document.createElement('img');
-      img.src= 'assets/images/GuindillaError.png';
-      let p = document.createElement('p');
-      let h2 = document.createElement('h1');
-      h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';
-      h2.style.color = 'white'
-      let h3 = document.createElement('h3');
-      h3.style.color = 'white'
-      h3.innerHTML = 'Serás redirigid@ a la página de inicio.';
-
-      p.appendChild(h2);
-      p.appendChild(h3);
-      div.appendChild(img);
-      div.appendChild(p);
-      body[0].appendChild(div);
+      if (body) {
+        body[0].innerHTML = '';
+        body[0].style.width = '80%';
+        body[0].style.height = '80%';
+        body[0].style.margin = 'auto';
+        body[0].style.marginTop = '5%';
 
 
-      setTimeout(function temporizador(){window.location.href = ''},3000);
-    }
+
+        let div = document.createElement('div');
+        div.style.display = 'flex';
+        div.id = 'container';
+
+        let img = document.createElement('img');
+        img.src = 'assets/images/GuindillaError.png';
+        let p = document.createElement('p');
+        let h2 = document.createElement('h1');
+        h2.innerHTML = '¡Oops! Parece que no tienes acceso para estar aquí.';
+        h2.style.color = 'white'
+        let h3 = document.createElement('h3');
+        h3.style.color = 'white'
+        h3.innerHTML = 'Serás redirigid@ a la página de inicio.';
+
+        p.appendChild(h2);
+        p.appendChild(h3);
+        div.appendChild(img);
+        div.appendChild(p);
+        body[0].appendChild(div);
+
+
+        setTimeout(function temporizador() { window.location.href = '' }, 3000);
+      }
 
     };
   };

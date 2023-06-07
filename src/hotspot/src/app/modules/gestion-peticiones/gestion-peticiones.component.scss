@@ -1,14 +1,14 @@
-*{
+* {
     color: white;
     font-size: large;
 }
 
-body{
+body {
     height: 600px !important;
     margin-top: 5% !important;
 }
 
-#tarjeta{
+#tarjeta {
     background-color: #1E1E1E;
     margin: auto;
     border-radius: 5px;
@@ -17,35 +17,35 @@ body{
 }
 
 
-#divpadre{
+#divpadre {
     width: 90%;
     margin: auto;
 }
 
-#info{
+#info {
     display: flex;
 }
 
-#alta{
+#alta {
     display: flex;
     text-align: center;
     margin: auto;
 }
 
-i{
+i {
     font-size: 2em;
 }
 
-#derecha{
+#derecha {
     margin-left: 10%;
 }
 
-.artistas{
-        border-radius: 50%;
-         width: 6rem;
-        height: 6rem;
+.artistas {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
 }
 
-#artista_lista{
+#artista_lista {
     text-align: center;
 }

@@ -14,6 +14,9 @@ export class LoginComponent {
     return new User("", "", "", "", new Date(), "", "");
   }
 
+  /**
+   * Función para comprar que el usuario exista
+   */
   async comprobarUser() {
     let emailAComprobar = this.user.email;
 
@@ -24,14 +27,14 @@ export class LoginComponent {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({password: this.user.password,email: this.user.email})
+        body: JSON.stringify({ password: this.user.password, email: this.user.email })
       }).then(response => {
         if (response.status === 200) {
 
           localStorage.setItem("loggedUser", "y");
           this.getTipo();
           localStorage.setItem("email", this.user.email);
-          localStorage.setItem('loggedEmpresa','n');
+          localStorage.setItem('loggedEmpresa', 'n');
 
         } else {
           console.log("Error")
@@ -44,9 +47,11 @@ export class LoginComponent {
 
   }
 
+  /**
+   * Función para obtener el tipo de usuario que está intentando acceder.
+   */
+  async getTipo() {
 
-async getTipo(){
-  
     const URL = "https://hotspotbackend-production.up.railway.app/users/email/" + this.user.email;
     const response = fetch(URL
     ).then(response => {
@@ -55,12 +60,12 @@ async getTipo(){
       }
       return "error"
     }).then(data => {
-      localStorage.setItem("tipo",data[0].tipo);
+      localStorage.setItem("tipo", data[0].tipo);
       window.location.href = "";
     })
-    .catch(error => {
-      console.error("Error getting user data:", error);
-    });
+      .catch(error => {
+        console.error("Error getting user data:", error);
+      });
 
   };
 

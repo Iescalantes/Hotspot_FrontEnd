@@ -1,17 +1,17 @@
 <body>
     <div id="tarjeta" class="col-4">
-        <form id="formulario" (ngSubmit) = "comprobarEmpresa()" #registerform = "ngForm">
-        <label for="email">Correo electrónico:</label>
-        <br>
-        <input type="email" id="email" name="email" [(ngModel)]="empresa.email">
-        <br>
-        <label for="pswd">Contraseña:</label>
-        <br>
-        <input type="password" id="pswd" name="password" [(ngModel)]="empresa.password">
-        <br>
-        <a href="login1">Soy un cliente</a>
-        <br>
-        <button type="submit">Acceder</button>
-    </form>
+        <form id="formulario" (ngSubmit)="comprobarEmpresa()" #registerform="ngForm">
+            <label for="email">Correo electrónico:</label>
+            <br>
+            <input type="email" id="email" name="email" [(ngModel)]="empresa.email">
+            <br>
+            <label for="pswd">Contraseña:</label>
+            <br>
+            <input type="password" id="pswd" name="password" [(ngModel)]="empresa.password">
+            <br>
+            <a href="login1">Soy un cliente</a>
+            <br>
+            <button type="submit">Acceder</button>
+        </form>
     </div>
 </body>

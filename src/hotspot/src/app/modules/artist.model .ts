@@ -4,7 +4,7 @@
  */
 
 export class Artista {
-    constructor (
+    constructor(
         public foto: string,
         public nombre: string,
         public apodo: string,
@@ -12,5 +12,5 @@ export class Artista {
         public descripcion: string,
         public tags: Array<String>,
         public festivales: Array<String>
-    ) {  }
+    ) { }
 }
