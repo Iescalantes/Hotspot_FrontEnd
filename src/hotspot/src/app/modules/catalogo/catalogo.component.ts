@@ -131,7 +131,7 @@ export class CatalogoComponent implements AfterViewInit {
             contador++;
         }
       }
-
+      this.Guardian();
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
@@ -192,6 +192,7 @@ export class CatalogoComponent implements AfterViewInit {
           }
         }
       }
+      this.Guardian();
     })
       .catch(error => {
         console.error("Error getting fest data:", error);
